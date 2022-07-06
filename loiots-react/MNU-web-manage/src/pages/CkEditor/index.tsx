@@ -45,32 +45,32 @@ const Ckeditor = () => {
         // ];
         ClassicEditor
             .create(document.querySelector('#editor'), {
-                toolbar: {
-                    items: [
-                        'heading',
-                        '|',
-                        'alignment',                                                 // <--- ADDED
-                        'bold',
-                        'italic',
-                        'link',
-                        'bulletedList',
-                        'numberedList',
-                        'uploadImage',
-                        'blockQuote',
-                        'undo',
-                        'redo'
-                    ]
-                },
-                image: {
-                    toolbar: [
-                        'imageStyle:inline',
-                        'imageStyle:block',
-                        'imageStyle:side',
-                        '|',
-                        'toggleImageCaption',
-                        'imageTextAlternative'
-                    ]
-                },
+                // toolbar: {
+                //     items: [
+                //         'heading',
+                //         '|',
+                //         'alignment',                                                 // <--- ADDED
+                //         'bold',
+                //         'italic',
+                //         'link',
+                //         'bulletedList',
+                //         'numberedList',
+                //         'uploadImage',
+                //         'blockQuote',
+                //         'undo',
+                //         'redo'
+                //     ]
+                // },
+                // image: {
+                //     toolbar: [
+                //         'imageStyle:inline',
+                //         'imageStyle:block',
+                //         'imageStyle:side',
+                //         '|',
+                //         'toggleImageCaption',
+                //         'imageTextAlternative'
+                //     ]
+                // },
                 // config
                 language: {
                     // The UI will be English.
