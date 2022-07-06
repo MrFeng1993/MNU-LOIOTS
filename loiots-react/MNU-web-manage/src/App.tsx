@@ -5,7 +5,7 @@ import type { MenuProps } from 'antd'
 import {
   MenuUnfoldOutlined, MenuFoldOutlined
 } from '@ant-design/icons';
-import { AppRoutes, menuItems } from './routes'
+import { AppRoutes, menuItems } from './router/routes'
 import './App.css'
 
 

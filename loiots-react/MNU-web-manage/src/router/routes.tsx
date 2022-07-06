@@ -1,9 +1,11 @@
 import React from 'react';
-import Home from './pages/Home'
-import List from './pages/List'
-import Detail from './pages/Detail'
-import Parser from './pages/Parser'
-import Rubber from './pages/Rubber'
+import Home from '../pages/Home'
+import List from '../pages/List'
+import Detail from '../pages/Detail'
+import Parser from '../pages/Parser'
+import Rubber from '../pages/Rubber'
+import Editor from '../pages/MarkDownEditor'
+import CkEditor from '../pages/CkEditor'
 import { useRoutes,} from "react-router-dom";
 import { UserOutlined, VideoCameraOutlined, UploadOutlined } from '@ant-design/icons';
 
@@ -42,6 +44,20 @@ const menuItems = [
         key: '/Rubber',
         label: 'Rubber',
         element: <Rubber />,
+        icon: <UploadOutlined />,
+    },
+    {
+        path: '/Editor',
+        key: '/Editor',
+        label: 'MarkDown编辑器',
+        element: <Editor />,
+        icon: <UploadOutlined />,
+    },
+    {
+        path: '/CkEditor',
+        key: '/CkEditor',
+        label: '富文本编辑器',
+        element: <CkEditor />,
         icon: <UploadOutlined />,
     },
 ]
