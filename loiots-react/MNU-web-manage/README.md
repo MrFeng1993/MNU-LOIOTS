@@ -40,4 +40,4 @@ This project layout should look like the following:
 
 
 
-- [eslint-prettier-husky.md](https://gist.github.com/santoshshinde2012/e1433327e5f7a58f98fe3e6651c4d5de)
+- [eslint-prettier-husky 配置](https://gist.github.com/santoshshinde2012/e1433327e5f7a58f98fe3e6651c4d5de)
