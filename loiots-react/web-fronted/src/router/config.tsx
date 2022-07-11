@@ -1,3 +1,6 @@
+import React from 'react';
+import Home from '../pages/Home';
+
 const RICH_TEXT = 1;
 const LIST = 2;
 const ORIGINAL = 3;
@@ -8,13 +11,13 @@ const flatten = (arr) => arr.reduce((prev, curr, index, list) => {
   }
   return prev.concat({ ...curr });
 }, []).map((item) => {
-  const { label, key, meta } = item;
+  const { label, key, meta, element } = item;
   return {
     key,
     meta,
     label,
     path: key,
-    element: `${label}-${meta?.pageType}`,
+    element: element || `${label}-${meta?.pageType}`,
     icon: 'home',
   };
 });
@@ -23,6 +26,7 @@ const MENU_ITEMS = [
   {
     label: '首页',
     key: '/home',
+    element: <Home />,
     meta: {
       pageType: ORIGINAL
     }

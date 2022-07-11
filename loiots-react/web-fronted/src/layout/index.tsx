@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Layout, Menu } from 'antd';
+import { PageContainer } from '@ant-design/pro-components';
 import { useNavigate } from 'react-router-dom';
 import type { MenuProps } from 'antd';
-import { AppRoutes, MENU_ITEMS } from './routes';
+import { AppRoutes, MENU_ITEMS } from '../router/routes';
+import SliderPage from './carousel';
 import './App.css';
 
 const App: React.FC = () => {
@@ -24,6 +26,7 @@ const App: React.FC = () => {
         items={MENU_ITEMS}
         onClick={handleMenuClick}
       />
+      <SliderPage />
       <Layout className="site-layout">
         <div
           className="site-layout-background"
