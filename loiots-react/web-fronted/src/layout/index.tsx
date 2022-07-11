@@ -18,28 +18,40 @@ const App: React.FC = () => {
   };
 
   return (
-    <Layout style={{ height: '100vh', width: '80vw', margin: '0 auto' }}>
-      <Menu
-        theme="dark"
-        mode="horizontal"
-        defaultSelectedKeys={['1']}
-        items={MENU_ITEMS}
-        onClick={handleMenuClick}
-      />
-      <SliderPage />
-      <Layout className="site-layout">
-        <div
-          className="site-layout-background"
-          style={{
-            margin: '24px 16px',
-            padding: 24,
-            minHeight: 280,
-          }}
-        >
-          <AppRoutes />
-        </div>
+    <div style={{ width: '80vw', margin: '0 auto' }}>
+      <Layout>
+        <Menu
+          theme="dark"
+          mode="horizontal"
+          defaultSelectedKeys={['1']}
+          items={MENU_ITEMS}
+          onClick={handleMenuClick}
+        />
+        <SliderPage />
+        <Layout className="site-layout">
+          <div
+            className="site-layout-background"
+            style={{
+              margin: '24px 16px',
+              padding: 24,
+              minHeight: 280,
+            }}
+          >
+            <AppRoutes />
+          </div>
+        </Layout>
       </Layout>
-    </Layout>
+      <div
+        className="site-layout-background"
+        style={{
+          margin: '24px 16px',
+          padding: 24,
+          minHeight: 280,
+        }}
+      >
+        友情链接
+      </div>
+    </div >
   );
 };
 
