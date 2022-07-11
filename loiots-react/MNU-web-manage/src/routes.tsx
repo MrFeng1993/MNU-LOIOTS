@@ -1,11 +1,12 @@
+
 import React from 'react';
-import Home from './pages/Home'
-import List from './pages/List'
-import Detail from './pages/Detail'
-import Parser from './pages/Parser'
-import Rubber from './pages/Rubber'
-import { useRoutes,} from "react-router-dom";
+import { useRoutes, } from 'react-router-dom';
 import { UserOutlined, VideoCameraOutlined, UploadOutlined } from '@ant-design/icons';
+import Home from './pages/Home';
+import List from './pages/List';
+import Detail from './pages/Detail';
+import Parser from './pages/Parser';
+import Rubber from './pages/Rubber';
 
 // Variable path must be the same as variable key
 const menuItems = [
@@ -44,18 +45,18 @@ const menuItems = [
         element: <Rubber />,
         icon: <UploadOutlined />,
     },
-]
+];
 
 
 
 const AppRoutes: React.FC = () => {
-    const routes = useRoutes(menuItems)
+    const routes = useRoutes(menuItems);
     return routes;
-}
+};
 
 
 export {
     AppRoutes,
     menuItems
-}
+};
 

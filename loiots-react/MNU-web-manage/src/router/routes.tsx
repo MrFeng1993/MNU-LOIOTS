@@ -8,7 +8,7 @@ import Parser from '../pages/Parser';
 import Rubber from '../pages/Rubber';
 import Editor from '../pages/MarkDownEditor';
 import CkEditor from '../pages/CkEditor';
-// Variable path must be the same as variable key
+
 const menuItems = [
     {
         path: '/',
