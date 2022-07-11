@@ -3,7 +3,7 @@ import type { ActionType, ProColumns } from '@ant-design/pro-components';
 import { ProTable, TableDropdown } from '@ant-design/pro-components';
 import { Button, Dropdown, Menu, Space, Tag } from 'antd';
 import React, { useRef } from 'react';
-import * as XLSX from "xlsx";
+import * as XLSX from 'xlsx';
 // import request from 'umi-request';
 
 type GithubIssueItem = {
@@ -72,9 +72,7 @@ const columns: ProColumns<GithubIssueItem>[] = [
         title: '标签',
         dataIndex: 'labels',
         search: false,
-        renderFormItem: (_, { defaultRender }) => {
-            return defaultRender(_);
-        },
+        renderFormItem: (_, { defaultRender }) => defaultRender(_),
         render: (_, record) => (
             <Space>
                 {record.labels.map(({ name, color }) => (
@@ -99,12 +97,10 @@ const columns: ProColumns<GithubIssueItem>[] = [
         valueType: 'dateRange',
         hideInTable: true,
         search: {
-            transform: (value) => {
-                return {
-                    startTime: value[0],
-                    endTime: value[1],
-                };
-            },
+            transform: (value) => ({
+                startTime: value[0],
+                endTime: value[1],
+            }),
         },
     },
     {

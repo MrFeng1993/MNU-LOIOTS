@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Button } from 'antd';
 import {
   decrement,
   increment,
@@ -7,7 +8,6 @@ import {
   incrementAsync,
   selectCount,
 } from './ListSlice';
-import { Button } from 'antd';
 
 const List = () => {
   const count = useSelector(selectCount);
@@ -45,6 +45,7 @@ const List = () => {
           Add Amount
         </Button>
         <Button
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
           onClick={() => dispatch(incrementAsync(Number(incrementAmount) || 0))}
         >
@@ -53,7 +54,7 @@ const List = () => {
       </div>
     </div>
   );
-}
+};
 
 
-export default List
+export default List;

@@ -37,20 +37,7 @@ This project layout should look like the following:
 └── yarn.lock
 ```
 
-## Running the project
 
-```js
-npm i
 
-npm run start
-```
 
-## Testing the Project
-
-...
-
-## Writing test with Jest
-
-...
-
-## Creating a production build
+- [eslint-prettier-husky.md](https://gist.github.com/santoshshinde2012/e1433327e5f7a58f98fe3e6651c4d5de)

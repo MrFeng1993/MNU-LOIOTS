@@ -1,34 +1,32 @@
 import React, { useState } from 'react';
 import { Layout, Menu } from 'antd';
-import { useNavigate } from "react-router-dom";
-import type { MenuProps } from 'antd'
+import { useNavigate } from 'react-router-dom';
+import type { MenuProps } from 'antd';
 import {
-  MenuUnfoldOutlined, MenuFoldOutlined
+  MenuUnfoldOutlined, MenuFoldOutlined,
 } from '@ant-design/icons';
-import { AppRoutes, menuItems } from './router/routes'
-import './App.css'
-
+import { AppRoutes, menuItems } from './router/routes';
+import './App.css';
 
 interface IMenuItems {
-  path: String
-  key: String,
-  label: String,
+  path: string
+  key: string,
+  label: string,
   element: React.ReactElement
-  icon:  React.ReactElement
+  icon: React.ReactElement
 }
 
 const App: React.FC = () => {
-
-  const { Header, Sider, Content } = Layout
-  const [collapsed, setCollapsed] = useState(false)
+  const { Header, Sider, Content } = Layout;
+  const [collapsed, setCollapsed] = useState(false);
   const navigate = useNavigate();
 
   const handleMenuClick: MenuProps['onClick'] = (e) => {
     console.log(e);
     navigate(e.key, {
-      replace: true
-    })
-  }
+      replace: true,
+    });
+  };
 
   return (
     <Layout style={{ height: '100vh' }}>
@@ -61,7 +59,7 @@ const App: React.FC = () => {
         </Content>
       </Layout>
     </Layout>
-  )
-}
+  );
+};
 
 export default App;

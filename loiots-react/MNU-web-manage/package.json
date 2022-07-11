@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ant-design/icons": "^4.7.0",
     "@ant-design/pro-components": "^1.1.5",
     "@ckeditor/ckeditor5-build-classic": "^34.2.0",
     "@ckeditor/ckeditor5-react": "^5.0.2",
@@ -14,10 +15,15 @@
     "@types/node": "^16.11.38",
     "@types/react": "^18.0.10",
     "@types/react-dom": "^18.0.5",
+    "@typescript-eslint/eslint-plugin": "^5.30.5",
+    "@typescript-eslint/parser": "^5.30.5",
     "ace-builds": "^1.5.3",
     "acorn-loose": "^8.3.0",
     "antd": "^4.20.7",
+    "eslint-config-airbnb": "^19.0.4",
+    "husky": "^8.0.1",
     "markdown-it": "^13.0.1",
+    "prettier": "^2.7.1",
     "react": "^18.1.0",
     "react-ace": "^10.1.0",
     "react-dom": "^18.1.0",
@@ -33,13 +39,12 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "eject": "react-scripts eject",
+    "lint": "eslint src/**/*.ts",
+    "lint-fix": "eslint --fix src/**/*.ts",
+    "prepare": "husky install",
+    "precommit": "npm run lint-fix",
+    "prepush": "npm run lint"
   },
   "browserslist": {
     "production": [
@@ -56,6 +61,13 @@
   "devDependencies": {
     "@types/markdown-it": "^12.2.3",
     "autoprefixer": "^10.4.7",
+    "eslint": "^7.32.0 || ^8.2.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
     "postcss": "^8.4.14",
     "tailwindcss": "^3.0.24"
   }
