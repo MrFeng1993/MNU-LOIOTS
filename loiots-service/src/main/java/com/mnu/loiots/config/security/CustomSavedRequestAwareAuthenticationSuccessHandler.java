@@ -17,6 +17,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
+import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
+import org.springframework.security.web.savedrequest.RequestCache;
+import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletException;
@@ -34,11 +38,11 @@ import java.util.stream.Collectors;
  */
 @Component
 @Slf4j
-public class CustomizeAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
+public class CustomSavedRequestAwareAuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 
     //AES密钥
-    @Value("${loiots.config.oss.host}")
-    private String HOST;
+    @Value("${loiots.config.server.ip}")
+    private String serverIp;
 
 
     @Autowired
@@ -84,6 +88,16 @@ public class CustomizeAuthenticationSuccessHandler implements AuthenticationSucc
 
 
 
+        RequestCache requestCache = new HttpSessionRequestCache();
+        SavedRequest savedRequest = requestCache.getRequest(httpServletRequest,httpServletResponse);
+        String url = "";
+        if(savedRequest != null){
+            url = savedRequest.getRedirectUrl();
+        }else{
+            url = "http://" + serverIp + "/index.html";
+        }
+//            getRedirectStrategy().sendRedirect(httpServletRequest,httpServletResponse,url);
+//        super.onAuthenticationSuccess(httpServletRequest, httpServletResponse, authentication);
 
         //处理编码方式，防止中文乱码的情况
         httpServletResponse.setContentType("text/json;charset=utf-8");
