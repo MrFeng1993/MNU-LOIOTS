@@ -2,157 +2,63 @@ import React, { useState } from 'react';
 import { Layout, Menu } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import type { MenuProps } from 'antd';
+import {
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+  UploadOutlined,
+  UserOutlined,
+  VideoCameraOutlined,
+} from '@ant-design/icons';
 import { AppRoutes, menuItems } from './router/routes';
 import './App.css';
 
-const items: MenuProps['items'] = [
-  {
-    label: '首页',
-    key: 'home',
-  },
-  {
-    label: '实验室简介',
-    key: 'lab'
-  },
-  {
-    label: '新 闻 信 息',
-    key: 'news',
-    children: [
-      {
-        type: 'group',
-        label: '',
-        children: [
-          {
-            label: '综合新闻',
-            key: 'news_info',
-          },
-          {
-            label: '通知公告',
-            key: 'announcement',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    label: '科 研 队 伍',
-    key: 'researchers',
-    children: [
-      {
-        type: 'group',
-        label: '',
-        children: [
-          {
-            label: '人才情况',
-            key: 'talented_info',
-          },
-          {
-            label: '教师动态',
-            key: 'teacher_info',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    label: '科 学 研 究',
-    key: 'research',
-    children: [
-      {
-        type: 'group',
-        label: '',
-        children: [
-          {
-            label: '研究方向',
-            key: 'research_direction',
-          },
-          {
-            label: '研究成果',
-            key: 'research_outcome',
-          },
-          {
-            label: '学术活动',
-            key: 'academi_activity',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    label: '实 验 室 管 理',
-    key: 'lab_manage',
-    children: [
-      {
-        type: 'group',
-        label: '',
-        children: [
-          {
-            label: '管理制度',
-            key: 'lab_manage_system',
-          },
-          {
-            label: '实验室安全',
-            key: 'lab_manage_security',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    label: '研究合作',
-    key: 'research_cooperation',
-    children: [
-      {
-        type: 'group',
-        label: '',
-        children: [
-          {
-            label: '项目合作',
-            key: 'research_cooperation_project',
-          },
-          {
-            label: '联系我们',
-            key: 'research_cooperation_contact',
-          },
-        ],
-      },
-    ],
-  }
-];
+const { Header, Sider, Content } = Layout;
 
 const App: React.FC = () => {
   const navigate = useNavigate();
+  const [collapsed, setCollapsed] = useState(false);
 
-  const handleMenuClick: MenuProps['onClick'] = (e) => {
-    console.log(e);
-    // navigate(e.key, {
-    //   replace: true,
-    // });
+  const handleMenuClick = (e: any) => {
+    console.log('path', e);
+    navigate(e.key, {
+      replace: true,
+    });
   };
 
   return (
-    <Layout style={{ height: '100vh', width: '80vw', margin: '0 auto' }}>
-      <Menu
-        theme="dark"
-        mode="horizontal"
-        defaultSelectedKeys={['1']}
-        items={items}
-        onClick={handleMenuClick}
-      />
+    <Layout>
+      <Sider trigger={null} collapsible collapsed={collapsed}>
+        <div className="logo" />
+        <Menu
+          theme="dark"
+          mode="inline"
+          defaultSelectedKeys={['1']}
+          onClick={handleMenuClick}
+          items={menuItems}
+        />
+      </Sider>
       <Layout className="site-layout">
-        <div
+        <Header className="site-layout-background">
+          {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+            className: 'trigger',
+            onClick: () => setCollapsed(!collapsed),
+          })}
+        </Header>
+        <Content
           className="site-layout-background"
           style={{
             margin: '24px 16px',
             padding: 24,
-            minHeight: 280,
+            minHeight: '100vh',
           }}
         >
           <AppRoutes />
-        </div>
+        </Content>
       </Layout>
     </Layout>
   );
 };
 
 export default App;
+
+
