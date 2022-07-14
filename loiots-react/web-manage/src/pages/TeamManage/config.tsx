@@ -1,80 +1,60 @@
-import { DownOutlined, EllipsisOutlined, QuestionCircleOutlined } from '@ant-design/icons';
-import { Button, Tag, Tooltip } from 'antd';
+import { message, Popconfirm } from 'antd';
 
-export type Status = {
-  color: string;
-  text: string;
-};
-
-export type TableListItem = {
-  key: number;
-  name: string;
-  containers: number;
-  creator: string;
-  status: Status;
-  createdAt: number;
-};
-
-const statusMap = {
-  0: {
-    color: 'blue',
-    text: '进行中',
-  },
-  1: {
-    color: 'green',
-    text: '已完成',
-  },
-  2: {
-    color: 'volcano',
-    text: '警告',
-  },
-  3: {
-    color: 'red',
-    text: '失败',
-  },
-  4: {
-    color: '',
-    text: '未完成',
-  },
-};
-
-
-const columns = [
+const getColumns = (moveUpResearcher, moveDownResearcher, delResearcher, actionRef) => [
   {
     title: '序号',
     width: 120,
     dataIndex: 'id',
     search: false,
-    render: (_) => <a>{_}</a>,
   },
   {
     title: '姓名',
     width: 120,
     dataIndex: 'name',
-    render: (_, record) => <Tag color={record.status.color}>{record.status.text}</Tag>,
   },
   {
     title: '概述',
     width: 120,
     search: false,
-    dataIndex: 'desc',
-    sorter: (a, b) => a.containers - b.containers,
+    dataIndex: 'descr',
   },
   {
     title: '操作',
     width: 164,
     key: 'option',
     valueType: 'option',
-    render: () => [
-      <a key="1">上移</a>,
-      <a key="2">下移</a>,
-      <a key="3">编辑</a>,
-      <a key="3">删除</a>,
-    ],
-  },
+    render: (_, record) =>
+      [
+        <a key="1" onClick={() => {
+          moveUpResearcher(record?.id).then(() => {
+            message.success('上移成功')
+            actionRef.current.reload()
+          })
+        }}>上移</a>,
+        <a key="2" onClick={() => {
+          moveDownResearcher(record?.id).then(() => {
+            message.success('下移成功')
+            actionRef.current.reload()
+          })
+        }}>下移</a>,
+        <Popconfirm
+          key="del"
+          title="确认要删除吗?"
+          onConfirm={() => {
+            delResearcher(record?.id).then(() => {
+              message.success('删除成功')
+              actionRef.current.reload()
+            })
+          }}
+          okText="是"
+          cancelText="否"
+        >
+          <a key="del">删除</a>
+        </Popconfirm>,
+      ]
+  }
 ];
 
 export {
-  statusMap,
-  columns
+  getColumns
 };

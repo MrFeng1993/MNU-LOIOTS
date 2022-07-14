@@ -27,7 +27,8 @@ const App: React.FC = () => {
 
   return (
     <Layout style={{
-      minHeight: '100vh',
+      height: '100vh',
+      overflow: 'hidden',
     }}>
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <div className="logo" />
@@ -50,7 +51,9 @@ const App: React.FC = () => {
           className="site-layout-background"
           style={{
             margin: '24px 16px',
-            padding: 24,
+            padding: '24px',
+            height: '100%',
+            overflow: 'scroll'
           }}
         >
           <AppRoutes />

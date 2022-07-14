@@ -1,79 +1,93 @@
-import { DownOutlined, EllipsisOutlined, QuestionCircleOutlined } from '@ant-design/icons';
-import { Button, Tag, Tooltip } from 'antd';
-
-export type Status = {
-  color: string;
-  text: string;
-};
-
-export type TableListItem = {
-  key: number;
-  name: string;
-  containers: number;
-  creator: string;
-  status: Status;
-  createdAt: number;
-};
-
-const statusMap = {
-  0: {
-    color: 'blue',
-    text: '进行中',
-  },
-  1: {
-    color: 'green',
-    text: '已完成',
-  },
-  2: {
-    color: 'volcano',
-    text: '警告',
-  },
-  3: {
-    color: 'red',
-    text: '失败',
-  },
-  4: {
-    color: '',
-    text: '未完成',
-  },
-};
-
-
-const columns = [
+import { message, Popconfirm, Tag } from 'antd';
+const getColumns = (ListOnArticle, TakeDownArticle, DelArticle, actionRef) => [
   {
     title: '序号',
     width: 120,
     dataIndex: 'id',
     search: false,
-    render: (_) => <a>{_}</a>,
   },
   {
     title: '栏目',
     width: 120,
-    dataIndex: 'name',
-    render: (_, record) => <Tag color={record.status.color}>{record.status.text}</Tag>,
+    dataIndex: 'part',
   },
   {
     title: '标题',
     width: 120,
-    dataIndex: 'desc',
-    sorter: (a, b) => a.containers - b.containers,
+    dataIndex: 'title',
+  },
+  {
+    title: '状态',
+    width: 120,
+    dataIndex: 'status',
+    render: (text, record) => {
+      return text === 0 ? <Tag color="red">已下架</Tag> : <Tag color="green">已上架</Tag>;
+    }
   },
   {
     title: '操作',
     width: 164,
     key: 'option',
     valueType: 'option',
-    render: () => [
-      <a key="1">上架</a>,
-      <a key="2">下架</a>,
-      <a key="3">编辑</a>,
-      <a key="3">删除</a>,
+    render: (_, record) => [
+      <>
+        {
+          record.status === 0 ?
+            (<Popconfirm
+              key="listOn"
+              title="确认要上架吗?"
+              onConfirm={() => {
+                ListOnArticle(record?.id).then((res) => {
+                  actionRef.current.reload();
+                  message.success('上架成功')
+                })
+              }}
+              okText="是"
+              cancelText="否"
+            >
+              <a key="1">
+                上架
+              </a>
+            </Popconfirm>) :
+            <Popconfirm
+              key="listOn"
+              title="确认要下架吗?"
+              onConfirm={() => {
+                TakeDownArticle(record?.id).then((res) => {
+                  actionRef.current.reload();
+                  message.success('下架成功')
+                })
+              }}
+              okText="是"
+              cancelText="否"
+            >
+              <a key="1">
+                下架
+              </a>
+            </Popconfirm>
+        }
+
+
+
+        <Popconfirm
+          key="del"
+          title="确认要删除吗?"
+          onConfirm={() => {
+            DelArticle(record?.id).then((res) => {
+              actionRef.current.reload();
+              message.success('删除成功')
+            })
+          }}
+          okText="是"
+          cancelText="否"
+        >
+          <a key="del">删除</a>
+        </Popconfirm>
+      </>
     ],
   },
 ];
 
 export {
-  statusMap,
-  columns
+  getColumns
 };

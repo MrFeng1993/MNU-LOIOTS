@@ -1,39 +1,38 @@
+import { useEffect, useRef } from 'react';
+import type { ActionType } from '@ant-design/pro-components';
 import { DownOutlined, EllipsisOutlined, QuestionCircleOutlined } from '@ant-design/icons';
 import type { ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
 import { Button, Tag, Tooltip, Input } from 'antd';
-import type { TableListItem } from './config';
-import { statusMap, columns } from './config';
+import { useNavigate } from 'react-router-dom';
+import { getColumns } from './config';
+import { getResearcher, moveUpResearcher, moveDownResearcher, delResearcher } from '../../api/TeamManage';
 
 
-const tableListDataSource: TableListItem[] = [];
-
-const creators = ['付小小', '曲丽丽', '林东东', '陈帅帅', '兼某某'];
-
-for (let i = 0; i < 5; i += 1) {
-  tableListDataSource.push({
-    key: i,
-    name: 'AppName',
-    containers: Math.floor(Math.random() * 20),
-    creator: creators[Math.floor(Math.random() * creators.length)],
-    status: statusMap[Math.floor(Math.random() * 10) % 5],
-    createdAt: Date.now() - Math.floor(Math.random() * 100000),
-  });
-}
 
 
 export default () => {
   console.log('团队管理页面');
+  const navigate = useNavigate();
+  const actionRef = useRef<ActionType>();
+
   return (
-    <ProTable<TableListItem>
+    <ProTable
       cardBordered
+      actionRef={actionRef}
       // @ts-ignore ts-message: Property 'columns' is missing in type '{}' but required in type 'ProTableProps<TableListItem>'.
-      columns={columns}
-      request={(params, sorter, filter) => {
-        // 表单搜索项会从 params 传入，传递给后端接口。
-        console.log(params, sorter, filter);
+      columns={getColumns(moveUpResearcher, moveDownResearcher, delResearcher, actionRef)}
+      request={async (params, sorter, filter) => {
+        console.log(params, filter);
+        const { current, pageSize, name } = params;
+        const data = await getResearcher({
+          currentNo: current,
+          pageSize: pageSize,
+          name: name
+        })
         return Promise.resolve({
-          data: tableListDataSource,
+          // @ts-ignore ts-message: Property 'data' is missing in type '{}' but required in type 'ProTableProps<TableListItem>'.
+          data: data?.object,
           success: true,
         });
       }}
@@ -45,8 +44,10 @@ export default () => {
       headerTitle="科研队伍管理"
       options={false}
       toolBarRender={() => [
-        <Button key="primary" type="primary">
-          创建应用
+        <Button key="primary" type="primary" onClick={() => {
+          navigate('/team_manage/create');
+        }}>
+          新增
         </Button>,
       ]}
     />

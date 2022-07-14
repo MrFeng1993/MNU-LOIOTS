@@ -2,6 +2,7 @@ import { DownOutlined, EllipsisOutlined, QuestionCircleOutlined } from '@ant-des
 import type { ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
 import { Button, Tag, Tooltip, Input } from 'antd';
+import { useNavigate } from 'react-router-dom';
 import type { TableListItem } from './config';
 import { statusMap, columns } from './config';
 
@@ -24,6 +25,7 @@ for (let i = 0; i < 5; i += 1) {
 
 export default () => {
   console.log('团队管理页面');
+  const navigate = useNavigate();
   return (
     <ProTable<TableListItem>
       cardBordered
@@ -45,7 +47,11 @@ export default () => {
       headerTitle="友情链接"
       options={false}
       toolBarRender={() => [
-        <Button key="primary" type="primary">
+        <Button key="primary" type="primary" onClick={() => {
+          navigate('/friend_link/create', {
+            replace: true,
+          });
+        }}>
           创建链接
         </Button>,
       ]}

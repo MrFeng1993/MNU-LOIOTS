@@ -2,38 +2,37 @@ import { DownOutlined, EllipsisOutlined, QuestionCircleOutlined } from '@ant-des
 import type { ProColumns } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
 import { Button, Tag, Tooltip, Input } from 'antd';
-import type { TableListItem } from './config';
-import { statusMap, columns } from './config';
+import { useNavigate } from 'react-router-dom';
+import { useEffect, useRef } from 'react';
+import type { ActionType } from '@ant-design/pro-components';
+import { getColumns } from './config';
+import { getArticle, ListOnArticle, TakeDownArticle, DelArticle } from '../../api/ContentPublish';
 
-
-const tableListDataSource: TableListItem[] = [];
-
-const creators = ['付小小', '曲丽丽', '林东东', '陈帅帅', '兼某某'];
-
-for (let i = 0; i < 5; i += 1) {
-  tableListDataSource.push({
-    key: i,
-    name: 'AppName',
-    containers: Math.floor(Math.random() * 20),
-    creator: creators[Math.floor(Math.random() * creators.length)],
-    status: statusMap[Math.floor(Math.random() * 10) % 5],
-    createdAt: Date.now() - Math.floor(Math.random() * 100000),
-  });
-}
 
 
 export default () => {
   console.log('团队管理页面');
+  const navigate = useNavigate();
+  const actionRef = useRef<ActionType>();
+
   return (
-    <ProTable<TableListItem>
+    <ProTable
+      actionRef={actionRef}
       cardBordered
       // @ts-ignore ts-message: Property 'columns' is missing in type '{}' but required in type 'ProTableProps<TableListItem>'.
-      columns={columns}
-      request={(params, sorter, filter) => {
-        // 表单搜索项会从 params 传入，传递给后端接口。
-        console.log(params, sorter, filter);
+      columns={getColumns(ListOnArticle, TakeDownArticle, DelArticle, actionRef)}
+      request={async (params, sorter, filter) => {
+        const { current, pageSize, part } = params;
+        const data = await getArticle({
+          currentNo: current,
+          pageSize: pageSize,
+          part
+        });
+        // @ts-ignore ts-message: Property 'data' is missing in type '{}' but required in type 'ProTableProps<TableListItem>'.
+        const { totalPages, object } = data
         return Promise.resolve({
-          data: tableListDataSource,
+          data: object,
+          total: totalPages,
           success: true,
         });
       }}
@@ -45,7 +44,9 @@ export default () => {
       headerTitle="内容发布"
       options={false}
       toolBarRender={() => [
-        <Button key="primary" type="primary">
+        <Button key="primary" type="primary" onClick={() => {
+          navigate('/content_publish/create');
+        }}>
           创建内容
         </Button>,
       ]}
