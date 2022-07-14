@@ -40,17 +40,14 @@ const App: React.FC = () => {
             <AppRoutes />
           </div>
         </Layout>
+        {/* <div
+          style={{
+
+          }}
+        >
+          友情链接
+        </div> */}
       </Layout>
-      <div
-        className="site-layout-background"
-        style={{
-          margin: '24px 16px',
-          padding: 24,
-          minHeight: 280,
-        }}
-      >
-        友情链接
-      </div>
     </div >
   );
 };
