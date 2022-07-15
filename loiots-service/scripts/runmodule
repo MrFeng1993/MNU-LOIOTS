@@ -1,0 +1,26 @@
+cd `dirname $0`
+echo module $module 
+module=$1     
+version=0.0.1
+ 
+cd `dirname $0`
+# rm simo_files/log/$module.log
+if [ -f ../$module/$module.jar ]; then
+   echo "File $module.jar exists."
+   modulejarname=../$module/$module.jar
+else
+   echo "File $module.jar does not exist."
+   modulejarname=$module-$version.jar
+   echo "file $modulejarname"
+   
+fi
+
+rootDir=$(dirname "$PWD")
+echo $modulejarname
+echo java -agentlib:jdwp=transport=dt_socket,server=y,address=8000,suspend=n -jar $modulejarname 
+
+if [ -f $rootDir/$module/application.properties ]; then
+  java  -Xmx$2 -Ddruid.logType=slf4j -Dsun.net.maxDatagramSockets=65535 -jar $modulejarname --spring.config.location=$rootDir/$module/application.properties
+else
+  java  -Xmx$2 -Ddruid.logType=slf4j -Dsun.net.maxDatagramSockets=65535 -jar $modulejarname
+fi

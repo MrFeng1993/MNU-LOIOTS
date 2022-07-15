@@ -19,7 +19,7 @@ public class ArticleCriteria extends Criteria<ArticleInfo> {
 
 
     private String title;//名称模糊匹配
-    private String part;//栏目
+    private List<String> part;//栏目
     private Byte status;//0-下架   1-上架
 
     public ArticleCriteria(){
@@ -46,7 +46,7 @@ public class ArticleCriteria extends Criteria<ArticleInfo> {
         if (StringUtils.hasLength(title)) {
             param.put("title", escapeLike(title));
         }
-        if (StringUtils.hasLength(part)) {
+        if (part != null && part.size() > 0) {
             param.put("part", part);
         }
         if (status != null) {
@@ -67,8 +67,8 @@ public class ArticleCriteria extends Criteria<ArticleInfo> {
         if (StringUtils.hasLength(title)){
             sql.append(" and s.title like :title");
         }
-        if (StringUtils.hasLength(part)){
-            sql.append(" and s.part = :part");
+        if (part != null && part.size() > 0){
+            sql.append(" and s.part in :part");
         }
         if (status != null) {
             sql.append(" and s.status = :status");

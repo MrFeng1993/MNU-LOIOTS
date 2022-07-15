@@ -6,6 +6,7 @@ import com.mnu.loiots.dao.IArticleDao;
 import com.mnu.loiots.dao.IResearcherDao;
 import com.mnu.loiots.entity.ArticleInfo;
 import com.mnu.loiots.entity.Researcher;
+import com.mnu.loiots.service.ArticleService;
 import com.mnu.loiots.service.ResearcherService;
 import com.mnu.loiots.utils.JsonModel;
 import com.mnu.loiots.utils.PageModel;
@@ -34,6 +35,9 @@ public class ArticleController {
 
     @Resource
     private IArticleDao articleDao;
+
+    @Resource
+    private ArticleService articleService;
 
 
     /**
@@ -123,6 +127,25 @@ public class ArticleController {
         }  catch (Exception e) {
             log.error(e.getMessage(),e);
             return new JsonModel(false,"查询科研人员接口错误",null);
+        }
+
+
+    }
+
+    /**
+     * 文章上下架
+     * 0-下架   1-上架
+     * @return
+     */
+    @RequestMapping(value = "launch/{status}/{id}",method = RequestMethod.GET)
+    public JsonModel copyLink(@PathVariable("status") Byte status,@PathVariable("id") Long id){
+
+        try {
+            articleService.launch(id,status);
+            return new JsonModel(true,"操作成功",null);
+        }  catch (Exception e) {
+            log.error(e.getMessage(),e);
+            return new JsonModel(false,"文章上下架接口错误",null);
         }
 
 

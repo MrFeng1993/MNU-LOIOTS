@@ -31,6 +31,9 @@ public class WebSecurityConfigurerAdapter extends org.springframework.security.c
     @Resource
     private CustomizeAuthenticationSuccessHandler authenticationSuccessHandler;
 
+    @Resource
+    private CustomSavedRequestAwareAuthenticationSuccessHandler customSavedRequestAwareAuthenticationSuccessHandler;
+
 
     @Resource
     private CustomizeAuthenticationFailureHandler authenticationFailureHandler;
@@ -45,7 +48,8 @@ public class WebSecurityConfigurerAdapter extends org.springframework.security.c
             "/swagger-ui/**",
             "/v2/api-docs",
             "/v3/api-docs",
-            "/**/ig/**"
+            "/**/ig/**",
+            "**"
     };
 
 
@@ -56,11 +60,13 @@ public class WebSecurityConfigurerAdapter extends org.springframework.security.c
         http
                 .addFilterBefore(new SignInPasswordDecryptionFilter(), UsernamePasswordAuthenticationFilter.class)
                 .formLogin()
+//                .loginPage("/apis/login")
                 .loginProcessingUrl("/login")
-                .successHandler(authenticationSuccessHandler)//登录成功处理逻辑
+                .successHandler(customSavedRequestAwareAuthenticationSuccessHandler)//登录成功处理逻辑
 //                .failureHandler(authenticationFailureHandler)//登录失败处理逻辑
                 .and()
                 .authorizeRequests()
+                .antMatchers("/**/login","/**/ig/**","**").permitAll()//这里不加的话login会死循环
                 .anyRequest()
                 .authenticated()
                 .and().logout()
@@ -69,6 +75,7 @@ public class WebSecurityConfigurerAdapter extends org.springframework.security.c
                 .logoutSuccessHandler(logoutSuccessHandler).//登出成功处理逻辑
                 deleteCookies("JSESSIONID");//登出之后删除cookie
         http.csrf().disable();
+        http.cors();
     }
 
     @Override

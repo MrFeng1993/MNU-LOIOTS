@@ -22,9 +22,9 @@ import java.io.IOException;
 public class CustomizeLogoutSuccessHandler implements LogoutSuccessHandler {
     @Override
     public void onLogoutSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
-        httpServletResponse.setContentType("text/json;charset=utf-8");
-        httpServletResponse.getWriter().write(JSON.toJSONString(new JsonModel(true,"登出成功")));
         log.info("登出成功");
+        httpServletResponse.sendRedirect("http://localhost/apis/login");
+        log.info("登出成功sendRedirect后");
     }
 
 }
