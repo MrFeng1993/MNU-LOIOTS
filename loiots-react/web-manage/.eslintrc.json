@@ -8,9 +8,6 @@
         "plugin:import/typescript",
         "prettier"
     ],
-    // "workingDirectories": [
-    //     "./src"
-    // ],
     "parserOptions": {
         "ecmaVersion": 2018,
         "project": [
