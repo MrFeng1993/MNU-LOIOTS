@@ -1,40 +1,44 @@
-import { ProForm, ProFormRadio, ProFormText, ProFormUploadDragger } from '@ant-design/pro-components';
+// @ts-nocheck
+import { useRef } from 'react';
+import { ProForm, ProFormRadio, ProFormText, ProFormUploadButton } from '@ant-design/pro-components';
+import type { ProFormInstance } from '@ant-design/pro-components';
 import { Col, message, Row, Space } from 'antd';
 import { useState } from 'react';
 import ProFormCkeditor from '../../../components/CkEditor';
 import { AddResearcher } from '../../../api/TeamManage';
+import { getUploadProps } from '../../../utils';
 
-
-type LayoutType = Parameters<typeof ProForm>[0]['layout'];
-const LAYOUT_TYPE_HORIZONTAL = 'horizontal';
 
 export default () => {
-  const [formLayoutType, setFormLayoutType] = useState<LayoutType>(LAYOUT_TYPE_HORIZONTAL);
+  const formRef = useRef<ProFormInstance>();
+  const [fileList, setFileList] = useState([]);
 
-  const formItemLayout =
-    formLayoutType === LAYOUT_TYPE_HORIZONTAL
-      ? {
-        labelCol: { span: 4 },
-        wrapperCol: { span: 14 },
-      }
-      : null;
+  const formItemLayout = {
+    labelCol: { span: 4 },
+    wrapperCol: { span: 14 }
+  }
+
+  const handleChange = (file) => {
+    const { fileList } = file;
+    setFileList(fileList);
+  }
+
 
   return (
     <ProForm
       {...formItemLayout}
       layout={'horizontal'}
+      formRef={formRef}
       submitter={{
         render: (props, doms) => {
           console.log(props, doms);
-          return formLayoutType === LAYOUT_TYPE_HORIZONTAL ? (
+          return (
             <Row>
               <Col span={14} offset={4}>
                 <Space>{doms}</Space>
               </Col>
             </Row>
-          ) : (
-            doms
-          );
+          )
         },
       }}
       onFinish={async (values) => {
@@ -66,9 +70,14 @@ export default () => {
         tooltip="最长为 24 位"
         placeholder="请填写概述"
       />
-      <ProFormUploadDragger label="图片" name="dragger" action="upload.do" />
-      <ProFormCkeditor width="md"
-        label="富文本内容" />
+      <ProFormUploadButton max={1} fieldProps={{
+        ...getUploadProps(setFileList, formRef, 'profileImgLink'),
+        fileList: fileList,
+        onChange: handleChange
+      }} label="图片" name="profileImgLink" />
+      <ProFormCkeditor width="large"
+        name="detailInfo"
+        label="内容" />
     </ProForm>
   );
 };

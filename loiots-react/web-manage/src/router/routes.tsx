@@ -12,7 +12,6 @@ import List from '../pages/List';
 import Detail from '../pages/Detail';
 import Parser from '../pages/Parser';
 import Editor from '../pages/MarkDownEditor';
-import CkEditor from '../pages/CkEditor';
 
 const menuItemsArr = [
     {
@@ -49,14 +48,6 @@ const menuItemsArr = [
         label: 'MarkDown编辑器',
         element: <Editor />,
         icon: <UploadOutlined />,
-    },
-    {
-        path: '/CkEditor',
-        key: '/CkEditor',
-        visible: true,
-        label: '富文本编辑器',
-        element: <CkEditor />,
-        icon: <EditOutlined />,
     },
     {
         path: '/media_library',

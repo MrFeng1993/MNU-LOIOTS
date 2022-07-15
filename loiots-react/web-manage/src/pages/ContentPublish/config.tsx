@@ -1,5 +1,5 @@
 import { message, Popconfirm, Tag } from 'antd';
-const getColumns = (ListOnArticle, TakeDownArticle, DelArticle, actionRef) => [
+const getColumns = (ListOnArticle, TakeDownArticle, DelArticle, actionRef, mapping) => [
   {
     title: '序号',
     width: 120,
@@ -10,6 +10,7 @@ const getColumns = (ListOnArticle, TakeDownArticle, DelArticle, actionRef) => [
     title: '栏目',
     width: 120,
     dataIndex: 'part',
+    render: (text, record) => mapping[text]
   },
   {
     title: '标题',
