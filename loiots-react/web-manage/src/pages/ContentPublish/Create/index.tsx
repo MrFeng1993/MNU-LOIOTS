@@ -75,18 +75,22 @@ export default () => {
         name="title"
         label="标题"
         placeholder="请输入姓名"
+        rules={[{ required: true, message: '请输入姓名' }]}
       />
       <ProFormUploadButton max={1} fieldProps={{
         ...getUploadProps(setFileList, formRef, 'coverImgLink'),
         fileList: fileList,
         onChange: handleChange
-      }} label="图片" name="coverImgLink" />
+      }} label="图片" name="coverImgLink"
+      />
       <ProFormRadio.Group
         name="part"
         label="栏目"
         options={options}
+        rules={[{ required: true, message: '请选择栏目' }]}
       />
       <ProFormCkeditor width="md"
+        rules={[{ required: true, message: '请填写内容' }]}
         name="content"
         label="内容" />
     </ProForm>

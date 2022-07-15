@@ -7,14 +7,10 @@ import { AppRoutes, MENU_ITEMS, ROUTERS } from '../router/routes';
 import SliderPage from './carousel';
 import './App.css';
 
-
-console.log('ROUTERS', ROUTERS);
-
 const App: React.FC = () => {
   const navigate = useNavigate();
 
   const handleMenuClick: MenuProps['onClick'] = (e) => {
-    console.log('路由信息', e);
     const targetMenuItem = ROUTERS.find(item => item.key === e.key);
     navigate(`${e.key}?code=${targetMenuItem?.meta?.code || 'home'}`);
   };
@@ -24,10 +20,11 @@ const App: React.FC = () => {
     >
       <Layout>
         <header>
-          <div className='header clearfix'>
+          <div className='header'>
             <div className='logo'>
-              <img className='logo-banner' src="http://jwc.mnu.cn/images/logo.png" alt="" />
+              <img className='logo-banner' src="http://82.156.213.198/medias/52542da4.png" alt="" />
             </div>
+            <div className='desc'>信息工程学院-物联网安全四川重点实验室</div>
           </div>
         </header>
         <Menu
@@ -42,8 +39,6 @@ const App: React.FC = () => {
           <div
             className="site-layout-background"
             style={{
-              margin: '24px 16px',
-              padding: 24,
               minHeight: 280,
             }}
           >

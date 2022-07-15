@@ -11,28 +11,6 @@
   border: 0;
 }
 
-.header {
-  background-image: url(http://jwc.mnu.cn/images/head-bg.png);
-}
-
-.header .head {
-  height: 100%;
-  margin: 0px auto;
-}
-
-.logo {
-  margin: 0px auto;
-  height: 100px;
-  line-height: 100px;
-  text-align: center;
-  margin-top: 20px;
-  margin-left: 40px;
-}
-
-.logo-banner {
-  vertical-align: middle;
-}
-
 .wrapper {
   width: 90vw;
   margin: 0px auto;
@@ -42,6 +20,27 @@
   background-position: center 110px;
   background-size: 100%;
 }
+
+.header {
+  background-image: url(http://jwc.mnu.cn/images/head-bg.png);
+  height: 100px;
+  display: flex;
+  align-items: center;
+  align-content: stretch;
+  padding: 0 60px;
+  justify-content: flex-start;
+}
+
+.desc {
+  font-size: 20px;
+  margin-left: 30px;
+}
+
+.logo-banner {
+  width: 80px;
+  vertical-align: middle;
+}
+
 
 #components-layout-demo-custom-trigger .trigger {
   padding: 0 24px;
@@ -59,8 +58,4 @@
   height: 32px;
   margin: 16px;
   background: rgba(255, 255, 255, 0.3);
-}
-
-.site-layout .site-layout-background {
-  /* background: #fff; */
 }

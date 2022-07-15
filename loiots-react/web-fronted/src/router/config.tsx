@@ -1,6 +1,7 @@
 import React from 'react';
 import Home from '../pages/Home';
-import RichText from '../pages/RichText';
+import RichText from '../pages/List';
+import Content from '../pages/Content';
 
 const RICH_TEXT = 1;
 const LIST = 2;
@@ -19,11 +20,15 @@ const flatten = (arr) => arr.reduce((prev, curr, index, list) => {
     label,
     path: key,
     element: element || `${label}-${meta?.pageType}`,
-    icon: 'home',
   };
 });
 
-const MENU_ITEMS = [
+const MENU_LIST = [
+  {
+    key: '/content',
+    element: <Content />,
+    hiddenInMenu: true
+  },
   {
     label: '首页',
     key: '/home',
@@ -79,6 +84,15 @@ const MENU_ITEMS = [
         type: 'group',
         label: '',
         children: [
+          {
+            label: '科研人员',
+            key: '/researchers/list',
+            element: <RichText />,
+            meta: {
+              pageType: LIST,
+              code: 'KYRY'
+            }
+          },
           {
             label: '人才情况',
             key: '/researchers/talented_info',
@@ -203,9 +217,9 @@ const MENU_ITEMS = [
   }
 ];
 
-const ROUTERS = flatten(MENU_ITEMS);
+const ROUTERS = flatten(MENU_LIST);
+const MENU_ITEMS = MENU_LIST.filter((item) => !item.hiddenInMenu);
 
-console.log('ROUTERS', ROUTERS);
 
 export {
   MENU_ITEMS,

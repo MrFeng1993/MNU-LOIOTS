@@ -20,3 +20,9 @@ code {
   height: 800px;
   overflow-y: auto;
 }
+
+
+.ck.ck-editor__main>.ck-editor__editable {
+  background: #f0f2f5 !important;
+  border: none !important;
+}

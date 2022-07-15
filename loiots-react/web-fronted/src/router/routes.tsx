@@ -13,7 +13,6 @@ const AppRoutes: React.FC = () => {
     return routes;
 };
 
-
 export {
     AppRoutes,
     ROUTERS,

@@ -17,6 +17,6 @@ code {
 }
 
 .ck.ck-content:not(.ck-comment__input *) {
-  height: 800px;
+  height: 100%;
   overflow-y: auto;
 }

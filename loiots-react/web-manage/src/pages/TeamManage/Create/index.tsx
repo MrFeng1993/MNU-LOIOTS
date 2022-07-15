@@ -62,20 +62,24 @@ export default () => {
         name="name"
         label="姓名"
         placeholder="请输入姓名"
+        rules={[{ required: true, message: '请输入姓名' }]}
       />
       <ProFormText
         width="md"
         name="desc"
         label="概述"
+        placeholder="请输入概述"
         tooltip="最长为 24 位"
-        placeholder="请填写概述"
+        rules={[{ required: true, message: '请填写概述' }]}
       />
       <ProFormUploadButton max={1} fieldProps={{
         ...getUploadProps(setFileList, formRef, 'profileImgLink'),
         fileList: fileList,
         onChange: handleChange
-      }} label="图片" name="profileImgLink" />
+      }} label="图片" name="profileImgLink"
+      />
       <ProFormCkeditor width="large"
+        rules={[{ required: true, message: '请填写内容' }]}
         name="detailInfo"
         label="内容" />
     </ProForm>
