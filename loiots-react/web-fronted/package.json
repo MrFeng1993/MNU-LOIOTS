@@ -51,7 +51,7 @@
     "eject": "react-scripts eject",
     "lint": "eslint src/**/*.ts",
     "lint-fix": "eslint --fix src/**/*.ts",
-    "prepare": "husky install",
+    "prepare": "cd ../.. && husky install loiots-react/web-fronted/.husky",
     "precommit": "npm run lint-fix",
     "prepush": "npm run lint"
   },

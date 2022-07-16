@@ -21,7 +21,7 @@ export default () => {
   })
 
   useEffect(() => {
-    Promise.all([getList('TZGG'), getList('XWXX'), getList('XSHD')]).then(res => {
+    Promise.all([getList('TZGG'), getList('ZHXW'), getList('XSHD')]).then(res => {
       const data = [
         {
           title: '通知公告',
@@ -30,7 +30,7 @@ export default () => {
         },
         {
           title: '新闻信息',
-          code: 'XWXX',
+          code: 'ZHXW',
           list: res[1]?.object
         },
         {

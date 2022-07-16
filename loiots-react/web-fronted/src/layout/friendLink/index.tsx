@@ -14,7 +14,7 @@ const data = [
 ]
 
 const App: React.FC = () => (
-  <div style={{ color: 'white', lineHeight: '60px', cursor: 'pointer', backgroundColor: '#001529', width: '100%', paddingLeft: '20px', textAlign: 'center' }}>
+  <div style={{ color: 'black', lineHeight: '60px', cursor: 'pointer', backgroundColor: '#e6e6e6', width: '100%', paddingLeft: '20px', textAlign: 'center' }}>
     <span style={{ fontSize: '16px' }}>
       友情链接：
     </span>
