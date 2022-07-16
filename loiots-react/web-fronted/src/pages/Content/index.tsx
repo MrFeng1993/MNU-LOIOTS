@@ -4,6 +4,8 @@ import { getArticle, getResearcher } from '../../api/Content'
 import useUrlState from '@ahooksjs/use-url-state';
 import { Empty } from 'antd';
 import Editor from '../../components/CkEditor';
+import { PageContainer, WaterMark } from '@ant-design/pro-components';
+import './index.css';
 
 const Content: React.FC = () => {
 
@@ -25,12 +27,17 @@ const Content: React.FC = () => {
     <div style={{ margin: '2% 2%', minHeight: '60vh' }}>
       {
         data ?
-          <>
+          <WaterMark content="物联网安全重点实验室">
             <div>
-              <span style={{ fontSize: '20px' }}>{data.title || data.name}</span>
+              <div>
+                <span className='title-content'>{data.title || data.name}</span>
+              </div>
+              <div className='date_wrapper'>
+                <span className='date'>{data.createTime}</span>
+              </div>
             </div>
             <Editor style={{ marginTop: '20px' }} content={data?.content || data?.detailInfo} />
-          </>
+          </WaterMark>
           :
           <Empty style={{ marginTop: '40px' }} description="暂无数据" />
       }

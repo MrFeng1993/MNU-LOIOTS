@@ -6,7 +6,7 @@ import { Button, Tag, Tooltip, Input, Card } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import type { ActionType } from '@ant-design/pro-components';
-import { PageContainer } from '@ant-design/pro-components';
+import { PageContainer, WaterMark } from '@ant-design/pro-components';
 import { getColumns } from './config';
 // import { getArticle, ListOnArticle, TakeDownArticle, DelArticle, getMenuDict } from '../../api/content'
 import { getArticleList, getResearcherList, getMenuDict } from '../../api/Content'
@@ -88,57 +88,59 @@ export default () => {
             },
           }}
         >
-          <ProList<{ title: string }>
-            itemLayout="vertical"
-            rowKey="id"
-            pagination={{
-              defaultPageSize: 5,
-              showSizeChanger: true,
-            }}
-            // headerTitle={mapping[code] || '科研人员'}
-            dataSource={dataSource}
-            onItem={(record: any) => {
-              return {
-                onMouseEnter: () => {
-                  console.log(record);
+          <WaterMark content="物联网安全重点实验室">
+            <ProList<{ title: string }>
+              itemLayout="vertical"
+              rowKey="id"
+              pagination={{
+                defaultPageSize: 5,
+                showSizeChanger: true,
+              }}
+              dataSource={dataSource}
+              onItem={(record: any) => {
+                return {
+                  onMouseEnter: () => {
+                    console.log(record);
+                  },
+                  onClick: () => {
+                    navigate(`/content?id=${record?.id}&code=${code}`)
+                  },
+                };
+              }}
+              metas={{
+                avatar: {
+                  dataIndex: 'image',
+                  editable: false,
+                  render: (item, record) => {
+                    return <img
+                      width={200}
+                      height={200}
+                      alt="logo"
+                      src={record?.coverImgLink || record?.profileImgLink || "http://82.156.213.198/medias/52542da4.png"
+                      }
+                    />
+                  }
                 },
-                onClick: () => {
-                  navigate(`/content?id=${record?.id}&code=${code}`)
+                title: {
+                  render: (item, record) => {
+                    return <h3>{record?.name || record?.title}</h3>
+                  }
                 },
-              };
-            }}
-            metas={{
-              avatar: {
-                dataIndex: 'image',
-                editable: false,
-                render: (item, record) => {
-                  return <img
-                    width={100}
-                    alt="logo"
-                    src={record?.coverImgLink || record?.profileImgLink || "http://82.156.213.198/medias/52542da4.png"}
-                  />
+                description: {
+                  render: (item, record) => {
+                    return (
+                      <>
+                        {record?.descr || '暂无介绍'}
+                      </>
+                    )
+                  }
                 }
-              },
-              title: {
-                render: (item, record) => {
-                  return <h3>{record?.name || record?.title}</h3>
-                }
-              },
-              description: {
-                render: (item, record) => {
-                  return (
-                    <>
-                      {record?.descr || '暂无介绍'}
-                    </>
-                  )
-                }
-              }
-            }}
-          />
-
+              }}
+            />
+          </WaterMark>
         </PageContainer>
       </Card>
-    </div>
+    </div >
 
   );
 };

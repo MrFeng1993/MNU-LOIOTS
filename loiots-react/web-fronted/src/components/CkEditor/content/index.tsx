@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import '@ckeditor/ckeditor5-build-classic/build/translations/zh-cn';
 import MyUploadAdapter from "../upload";
-import str from '../config';
 
 
 function MyCustomUploadAdapterPlugin(editor) {

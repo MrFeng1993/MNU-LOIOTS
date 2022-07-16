@@ -42,7 +42,7 @@ const App: React.FC = () => {
               <img className='logo-banner' src="http://82.156.213.198/medias/ecffd803.png" alt="" />
             </div>
 
-            <div style={{ position: "absolute", right: "60px" }}>
+            <div>
               <Search
                 placeholder="输入关键字搜索"
                 allowClear
@@ -57,7 +57,7 @@ const App: React.FC = () => {
         <Menu
           theme="light"
           mode="horizontal"
-          defaultSelectedKeys={['1']}
+          defaultSelectedKeys={['/home']}
           items={MENU_ITEMS}
           onClick={handleMenuClick}
           style={{
