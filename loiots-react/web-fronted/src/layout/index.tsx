@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import type { MenuProps } from 'antd';
 import { AppRoutes, MENU_ITEMS, ROUTERS } from '../router/routes';
 import SliderPage from './carousel';
+import FriendLink from './friendLink';
+import CopyRight from './CopyRight';
 import './App.css';
 
 const App: React.FC = () => {
@@ -24,7 +26,7 @@ const App: React.FC = () => {
             <div className='logo'>
               <img className='logo-banner' src="http://82.156.213.198/medias/52542da4.png" alt="" />
             </div>
-            <div className='desc'>信息工程学院-物联网安全四川重点实验室</div>
+            <div className='desc'>物联网安全四川重点实验室</div>
           </div>
         </header>
         <Menu
@@ -45,13 +47,8 @@ const App: React.FC = () => {
             <AppRoutes />
           </div>
         </Layout>
-        {/* <div
-          style={{
-
-          }}
-        >
-          友情链接
-        </div> */}
+        <FriendLink />
+        <CopyRight />
       </Layout>
     </div >
   );

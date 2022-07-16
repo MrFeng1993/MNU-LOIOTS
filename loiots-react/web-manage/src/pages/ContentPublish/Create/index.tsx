@@ -25,12 +25,15 @@ export default () => {
   }
 
   const getOptions = async () => {
+    const arr = ['LXWM', 'SYSJJ', 'SYSAS', 'RCQK']
     const data = await getMenuDict()
     const options = Object.keys(data).map(key => {
       return {
         label: data[key],
         value: key
       }
+    }).filter(item => {
+      return !arr.includes(item.value)
     })
     setOptions(options);
   }

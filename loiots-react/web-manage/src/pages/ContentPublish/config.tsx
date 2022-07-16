@@ -1,4 +1,4 @@
-import { message, Popconfirm, Tag } from 'antd';
+import { Button, message, Popconfirm, Tag } from 'antd';
 const getColumns = (ListOnArticle, TakeDownArticle, DelArticle, actionRef, mapping) => [
   {
     title: '序号',
@@ -68,22 +68,23 @@ const getColumns = (ListOnArticle, TakeDownArticle, DelArticle, actionRef, mappi
             </Popconfirm>
         }
 
-
-
-        <Popconfirm
-          key="del"
-          title="确认要删除吗?"
-          onConfirm={() => {
-            DelArticle(record?.id).then((res) => {
-              actionRef.current.reload();
-              message.success('删除成功')
-            })
-          }}
-          okText="是"
-          cancelText="否"
-        >
-          <a key="del">删除</a>
-        </Popconfirm>
+        {
+          record?.creator !== 'system' &&
+          <Popconfirm
+            key="del"
+            title="确认要删除吗?"
+            onConfirm={() => {
+              DelArticle(record?.id).then((res) => {
+                actionRef.current.reload();
+                message.success('删除成功')
+              })
+            }}
+            okText="是"
+            cancelText="否"
+          >
+            <Button type='link' key="del">删除</Button>
+          </Popconfirm>
+        }
       </>
     ],
   },

@@ -8,7 +8,7 @@ import Editor from '../../components/CkEditor';
 const Content: React.FC = () => {
 
   const queryParams = useUrlState({ code: '' })[0];
-  const [content, setContent] = useState('')
+  const [data, setData] = useState('')
   const { id, code } = queryParams;
 
   useEffect(() => {
@@ -18,14 +18,24 @@ const Content: React.FC = () => {
   const getArticleContent = async (ID) => {
     const APIGet = code === 'KYRY' ? getResearcher : getArticle
     const data = await APIGet(ID)
-    setContent(data?.content || data?.detailInfo)
+    setData(data)
   }
 
   return (
-    content ?
-      <Editor content={content} />
-      :
-      <Empty style={{ marginTop: '40px' }} description="暂无数据" />
+    <div style={{ margin: '20px 40px' }}>
+      {
+        data ?
+          <>
+            <div>
+              <span style={{ fontSize: '20px' }}>{data.title || data.name}</span>
+            </div>
+            <Editor style={{ marginTop: '20px' }} content={data?.content || data?.detailInfo} />
+          </>
+          :
+          <Empty style={{ marginTop: '40px' }} description="暂无数据" />
+      }
+    </div>
+
   )
 
 };

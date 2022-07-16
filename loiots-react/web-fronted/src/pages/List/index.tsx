@@ -1,16 +1,18 @@
-import { DownOutlined, EllipsisOutlined, QuestionCircleOutlined } from '@ant-design/icons';
+// @ts-nocheck
+import { DownOutlined, EllipsisOutlined, QuestionCircleOutlined, LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
 import type { ProColumns } from '@ant-design/pro-components';
-import { ProTable } from '@ant-design/pro-components';
-import { Button, Tag, Tooltip, Input } from 'antd';
+import { ProTable, ProList } from '@ant-design/pro-components';
+import { Button, Tag, Tooltip, Input, Card } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import type { ActionType } from '@ant-design/pro-components';
+import { PageContainer } from '@ant-design/pro-components';
 import { getColumns } from './config';
 // import { getArticle, ListOnArticle, TakeDownArticle, DelArticle, getMenuDict } from '../../api/content'
 import { getArticleList, getResearcherList, getMenuDict } from '../../api/Content'
 import useUrlState from '@ahooksjs/use-url-state';
 import { v4 as uuidv4 } from 'uuid';
-
+import React from 'react'
 
 export default () => {
 
@@ -19,12 +21,32 @@ export default () => {
 
   const navigate = useNavigate();
   const [mapping, setMapping] = useState({})
-  const actionRef = useRef<ActionType>();
+  const [dataSource, serDataSoure] = useState([])
 
 
   useEffect(() => {
-    code && actionRef.current.reload();
+    getData()
   }, [code])
+
+  const getData = async () => {
+    const GetListApi = code === 'KYRY' ? getResearcherList : getArticleList
+    const payload = code === 'KYRY' ? {
+      current: 1,
+      pageSize: 2000
+    } :
+      {
+        current: 1,
+        pageSize: 2000,
+        part: [code],
+        status: 1,
+      }
+    const data = await GetListApi(payload);
+    if (Array.isArray(data?.object) && data?.object.length === 1 && data?.object[0]?.creator === 'system') {
+      goToContent(data?.object[0]?.id)
+    } else {
+      serDataSoure(data?.object || [])
+    }
+  }
 
   useEffect(() => {
     getMenuMapping()
@@ -42,39 +64,67 @@ export default () => {
 
 
   return (
-    <ProTable
-      key={uuidv4()}
-      actionRef={actionRef}
-      rowKey="id"
-      cardBordered
-      // @ts-ignore ts-message: Property 'columns' is missing in type '{}' but required in type 'ProTableProps<TableListItem>'.
-      columns={getColumns(goToContent, code)}
-      request={async (params, sorter, filter) => {
-        const { current, pageSize, part } = params;
-        const GetListApi = code === 'KYRY' ? getResearcherList : getArticleList
-        const payload = code === 'KYRY' ? {
-          ...params,
-        } :
-          {
-            ...params,
-            part: [code],
-            status: 1,
-          }
-        const data = await GetListApi(payload);
-        // @ts-ignore ts-message: Property 'data' is missing in type '{}' but required in type 'ProTableProps<TableListItem>'.
-        const { count, object } = data
-        return Promise.resolve({
-          data: object,
-          total: count,
-          success: true,
-        });
+    <div
+      style={{
+        boxShadow: '0 0 8px rgba(0, 0, 0, 0.2)',
       }}
-      pagination={{
-        showQuickJumper: true,
-      }}
-      dateFormatter="string"
-      headerTitle={mapping[code] || '科研人员'}
-      options={false}
-    />
+    >
+      <Card>
+        <PageContainer
+          ghost
+        >
+          <ProList<{ title: string }>
+            itemLayout="vertical"
+            rowKey="id"
+            pagination={{
+              defaultPageSize: 5,
+              showSizeChanger: true,
+            }}
+            headerTitle={mapping[code]}
+            dataSource={dataSource}
+            onItem={(record: any) => {
+              return {
+                onMouseEnter: () => {
+                  console.log(record);
+                },
+                onClick: () => {
+                  navigate(`/content?id=${record?.id}&code=${code}`)
+                },
+              };
+            }}
+            metas={{
+              avatar: {
+                dataIndex: 'image',
+                editable: false,
+                render: (item, record) => {
+                  return <img
+                    width={100}
+                    alt="logo"
+                    src={record?.coverImgLink || record?.profileImgLink || "http://82.156.213.198/medias/52542da4.png"}
+                  />
+                }
+              },
+              title: {
+                render: (item, record) => {
+                  return <h3>{record?.name || record?.title}</h3>
+                }
+              },
+              description: {
+                render: (item, record) => {
+                  return (
+                    <>
+                      {record?.descr || '暂无介绍'}
+                    </>
+                  )
+                }
+              }
+            }}
+          />
+
+        </PageContainer>
+      </Card>
+    </div>
+
   );
 };
+

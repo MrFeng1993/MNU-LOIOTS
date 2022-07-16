@@ -50,7 +50,7 @@ export default () => {
         dataSource={articleList}
         renderItem={item => (
           <List.Item key={uuidv4()}>
-            <Card title={item.title}>
+            <Card style={{ minHeight: '300px' }} title={item.title}>
               {
                 item.list.length > 0 ?
                   item.list?.map(ele => (

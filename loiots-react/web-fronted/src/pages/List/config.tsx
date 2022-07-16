@@ -3,14 +3,14 @@ import { v4 as uuidv4 } from 'uuid';
 
 const getColumns = (goToContent, code) => {
   const columns = [
-    {
-      title: '序号',
-      width: 120,
-      key: uuidv4(),
-      dataIndex: 'id',
-      search: false,
-      belong: 'dynamic'
-    },
+    // {
+    //   title: '序号',
+    //   width: 120,
+    //   key: uuidv4(),
+    //   dataIndex: 'id',
+    //   search: false,
+    //   belong: 'dynamic'
+    // },
     {
       title: '头像',
       width: 120,

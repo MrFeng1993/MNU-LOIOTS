@@ -30,6 +30,11 @@ const MENU_LIST = [
     hiddenInMenu: true
   },
   {
+    key: '/',
+    element: <Home />,
+    hiddenInMenu: true
+  },
+  {
     label: '首页',
     key: '/home',
     element: <Home />,
