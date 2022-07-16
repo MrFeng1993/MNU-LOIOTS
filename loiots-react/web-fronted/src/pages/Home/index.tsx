@@ -4,8 +4,9 @@ import { Card } from 'antd';
 import { Avatar, List } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { getArticleList } from '../../api/Content'
-import { Empty } from 'antd';
+import { Empty, Button } from 'antd';
 import { v4 as uuidv4 } from 'uuid';
+import { CaretRightOutlined } from '@ant-design/icons';
 
 
 export default () => {
@@ -56,11 +57,20 @@ export default () => {
                   item.list?.map(ele => (
                     <List.Item.Meta
                       key={uuidv4()}
-                      title={<a onClick={() => {
+                      title={<Button icon={<CaretRightOutlined />} type="link" onClick={() => {
                         const { id } = ele;
                         const { code } = item;
                         navigate(`/content?id=${id}&code=${code}`)
-                      }}>标题：{ele.title}</a>}
+                      }}>
+                        <span style={{
+                          width: '250px',
+                          textAlign: 'left',
+                          // overflow: 'hidden',
+                          // textOverflow: 'ellipsis', //文本溢出显示省略号
+                          // whiteSpace: 'nowrap' //文本不会换行
+                        }}>{ele.title}</span>
+                        <span>{ele.createTime?.split(' ')[0]}</span>
+                      </Button>}
                     />
                   )) :
                   <Empty description="暂无内容" />
@@ -68,7 +78,8 @@ export default () => {
               }
             </Card>
           </List.Item>
-        )}
+        )
+        }
       />
     </div >
   );

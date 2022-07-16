@@ -41,6 +41,10 @@
   vertical-align: middle;
 }
 
+svg {
+  vertical-align: baseline;
+}
+
 
 #components-layout-demo-custom-trigger .trigger {
   padding: 0 24px;
