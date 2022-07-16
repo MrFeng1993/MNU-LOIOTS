@@ -22,7 +22,7 @@ const Content: React.FC = () => {
   }
 
   return (
-    <div style={{ margin: '20px 40px' }}>
+    <div style={{ margin: '2% 2%' }}>
       {
         data ?
           <>
