@@ -12,7 +12,6 @@ public interface IMyRoleDao extends ICustomRepository<MyRole,Long> {
 
     boolean existsByRoleCode(String roleCode);
 
-
     boolean existsById(Long id);
 
     @Query(nativeQuery = true, value = "select * from mnu_loiots_role where role_code = :roleCode order by create_time asc limit 1")
