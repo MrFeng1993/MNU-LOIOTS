@@ -29,8 +29,8 @@ const Content: React.FC = () => {
         data ?
           <WaterMark content="物联网安全重点实验室">
             <div>
-              <div>
-                <span className='title-content'>{data.title || data.name}</span>
+              <div className='content_title-content'>
+                <span>{data.title || data.name}</span>
               </div>
               <div className='date_wrapper'>
                 <span className='date'>{data.createTime}</span>

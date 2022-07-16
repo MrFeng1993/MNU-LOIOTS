@@ -168,7 +168,7 @@ const MENU_LIST = [
         label: '',
         children: [
           {
-            label: '实验室管理制度',
+            label: '管理制度',
             key: '/lab_manage/system',
             element: <RichText />,
 
