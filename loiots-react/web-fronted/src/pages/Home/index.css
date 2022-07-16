@@ -11,7 +11,7 @@
   align-items: center;
 }
 
-.text {
+.home_text {
   max-width: 300px;
   cursor: pointer;
   display: inline-block;
@@ -20,6 +20,7 @@
   white-space: nowrap;
 }
 
-.date {
+.home_date {
   cursor: pointer;
+  color: rgb(24, 144, 255);
 }
