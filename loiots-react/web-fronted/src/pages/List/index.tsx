@@ -72,6 +72,20 @@ export default () => {
       <Card>
         <PageContainer
           ghost
+          header={{
+            breadcrumb: {
+              routes: [
+                {
+                  path: '',
+                  breadcrumbName: '首页',
+                },
+                {
+                  path: '',
+                  breadcrumbName: mapping[code] || '科研人员',
+                }
+              ],
+            },
+          }}
         >
           <ProList<{ title: string }>
             itemLayout="vertical"
@@ -80,7 +94,7 @@ export default () => {
               defaultPageSize: 5,
               showSizeChanger: true,
             }}
-            headerTitle={mapping[code]}
+            // headerTitle={mapping[code] || '科研人员'}
             dataSource={dataSource}
             onItem={(record: any) => {
               return {

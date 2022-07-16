@@ -20,3 +20,7 @@ code {
   height: 100%;
   overflow-y: auto;
 }
+
+.ck.ck-editor__main>.ck-editor__editable {
+  border-color: 'none'
+}

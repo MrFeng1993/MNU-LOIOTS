@@ -5,27 +5,27 @@ const { Meta } = Card;
 
 const data = [
   {
-    id: '西安电子科技大学',
+    id: '国家自然科学基金委员会',
+    url: 'https://www.nsfc.gov.cn/'
   }, {
-    id: '西安外国语大学'
-  }, {
-    id: '西安科技大学'
+    id: '四川省科学技术厅',
+    url: 'http://kjt.sc.gov.cn/'
   }
 ]
 
 const App: React.FC = () => (
-  <Card>
-    <div style={{ display: 'flex' }}>
+  <div style={{ color: 'white', lineHeight: '60px', cursor: 'pointer', backgroundColor: '#001529', width: '100%', paddingLeft: '20px', textAlign: 'center' }}>
+    <span style={{ fontSize: '16px' }}>
+      友情链接：
+    </span>
+    <span>
       {
-        data.map(item => <Card
-          style={{ width: '100%' }}
-          hoverable
-        >
-          <Meta title={item.id} description="省部共建学校" />
-        </Card>)
+        data.map(item => <span onClick={() => {
+          location.href = item.url
+        }} style={{ display: 'inline-block', marginRight: '20px', fontSize: '18px', }}>{item.id}</span>)
       }
-    </div >
-  </Card >
+    </span>
+  </div >
 );
 
 export default App;

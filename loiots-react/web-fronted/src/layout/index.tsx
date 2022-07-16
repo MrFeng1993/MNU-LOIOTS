@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState } from 'react';
 import { Layout, Menu } from 'antd';
 import { PageContainer } from '@ant-design/pro-components';
@@ -48,7 +49,14 @@ const App: React.FC = () => {
           </div>
         </Layout>
         <FriendLink />
-        <CopyRight />
+
+        <div style={{
+          backgroundImage: 'url("http://www.mnu.cn/images/footer-bg.jpg")'
+        }}>
+
+          <CopyRight />
+        </div>
+
       </Layout>
     </div >
   );

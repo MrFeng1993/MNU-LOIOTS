@@ -9,11 +9,10 @@ const Content: React.FC = () => {
 
   return (
     <div style={{
-      background: '#001529',
       display: 'flex',
-      height: '100px',
+      height: '180px',
       color: 'white',
-      lineHeight: '100px',
+      lineHeight: '180px',
       justifyContent: 'center'
     }}>
       <div>绵阳师范学院传媒学院 地址：绵阳市高新区绵兴西路166号  邮编：621000</div>
