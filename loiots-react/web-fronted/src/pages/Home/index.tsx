@@ -45,6 +45,7 @@ export default () => {
     })
   }, [])
 
+
   return (
     <div>
       <List
@@ -60,16 +61,19 @@ export default () => {
                   item.list?.map(ele => (
                     <List.Item.Meta
                       key={uuidv4()}
-                      title={<Button icon={<CaretRightOutlined />} type="link" onClick={() => {
+                      avatar={<Avatar src={ele.coverImgLink || 'http://82.156.213.198/medias/52542da4.png'} />}
+                      title={<Button type="link" onClick={() => {
                         const { id } = ele;
                         const { code } = item;
                         navigate(`/content?id=${id}&code=${code}`)
                       }}>
                         <span style={{
                           textAlign: 'left',
-                          // overflow: 'hidden',
-                          // textOverflow: 'ellipsis', //文本溢出显示省略号
-                          // whiteSpace: 'nowrap' //文本不会换行
+                          fontSize: '18px',
+                          overflow: 'hidden',
+                          width: '400px',
+                          textOverflow: 'ellipsis', //文本溢出显示省略号
+                          whiteSpace: 'nowrap' //文本不会换行
                         }}>{ele.title}</span>
                         {/* <span>{ele.createTime?.split(' ')[0]}</span> */}
                       </Button>}
