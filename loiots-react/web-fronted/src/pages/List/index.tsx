@@ -71,6 +71,7 @@ export default () => {
     >
       <Card>
         <PageContainer
+          style={{ minHeight: '60vh' }}
           ghost
           header={{
             breadcrumb: {

@@ -22,7 +22,7 @@ const Content: React.FC = () => {
   }
 
   return (
-    <div style={{ margin: '2% 2%' }}>
+    <div style={{ margin: '2% 2%', minHeight: '60vh' }}>
       {
         data ?
           <>
@@ -34,7 +34,7 @@ const Content: React.FC = () => {
           :
           <Empty style={{ marginTop: '40px' }} description="暂无数据" />
       }
-    </div>
+    </div >
 
   )
 

@@ -37,7 +37,7 @@ const App: React.FC = () => {
           items={MENU_ITEMS}
           onClick={handleMenuClick}
         />
-        <SliderPage />
+        {/* <SliderPage /> */}
         <Layout className="site-layout">
           <div
             className="site-layout-background"

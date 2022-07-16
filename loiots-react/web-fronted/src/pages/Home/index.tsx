@@ -8,7 +8,7 @@ import { Empty, Button } from 'antd';
 import { v4 as uuidv4 } from 'uuid';
 import { CaretRightOutlined } from '@ant-design/icons';
 import { useSize } from 'ahooks';
-
+import Slider from '../../layout/carousel';
 
 export default () => {
   const [articleList, setArticleList] = useState<any[]>([]);
@@ -48,6 +48,7 @@ export default () => {
 
   return (
     <div>
+      <Slider />
       <List
         style={{ padding: '40px' }}
         itemLayout="vertical"
