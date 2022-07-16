@@ -7,11 +7,13 @@ import { getArticleList } from '../../api/Content'
 import { Empty, Button } from 'antd';
 import { v4 as uuidv4 } from 'uuid';
 import { CaretRightOutlined } from '@ant-design/icons';
+import { useSize } from 'ahooks';
 
 
 export default () => {
   const [articleList, setArticleList] = useState<any[]>([]);
   const navigate = useNavigate();
+  const size = useSize(document.querySelector('body'));
 
   const getList = async (code) => getArticleList({
     "currentNo": 1,
@@ -47,7 +49,8 @@ export default () => {
     <div>
       <List
         style={{ padding: '40px' }}
-        grid={{ gutter: 16, column: 3 }}
+        itemLayout="vertical"
+        grid={{ gutter: 16, xs: 1, sm: 1, md: 1, lg: 3, xl: 3, xxl: 3 }}
         dataSource={articleList}
         renderItem={item => (
           <List.Item key={uuidv4()}>
@@ -63,13 +66,12 @@ export default () => {
                         navigate(`/content?id=${id}&code=${code}`)
                       }}>
                         <span style={{
-                          width: '250px',
                           textAlign: 'left',
                           // overflow: 'hidden',
                           // textOverflow: 'ellipsis', //文本溢出显示省略号
                           // whiteSpace: 'nowrap' //文本不会换行
                         }}>{ele.title}</span>
-                        <span>{ele.createTime?.split(' ')[0]}</span>
+                        {/* <span>{ele.createTime?.split(' ')[0]}</span> */}
                       </Button>}
                     />
                   )) :
