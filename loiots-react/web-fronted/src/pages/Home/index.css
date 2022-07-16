@@ -1,0 +1,25 @@
+.title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.textWrapper {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+}
+
+.text {
+  max-width: 300px;
+  cursor: pointer;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.date {
+  cursor: pointer;
+}

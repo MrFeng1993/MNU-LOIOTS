@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { useEffect, useState } from 'react';
 import { Card } from 'antd';
-import { Avatar, List } from 'antd';
+import { Avatar, List, Badge } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { getArticleList } from '../../api/Content'
 import { Empty, Button } from 'antd';
@@ -9,6 +9,9 @@ import { v4 as uuidv4 } from 'uuid';
 import { CaretRightOutlined } from '@ant-design/icons';
 import { useSize } from 'ahooks';
 import Slider from '../../layout/carousel';
+import './index.css';
+
+
 
 export default () => {
   const [articleList, setArticleList] = useState<any[]>([]);
@@ -23,21 +26,27 @@ export default () => {
   })
 
   useEffect(() => {
-    Promise.all([getList('TZGG'), getList('XWXX'), getList('XSHD')]).then(res => {
+    Promise.all([getList('TZGG'), getList('ZHXW'), getList('XSHD')]).then(res => {
       const data = [
         {
           title: '通知公告',
           code: 'TZGG',
+          color: 'purple',
+          path: 'news/notice',
           list: res[0]?.object
         },
         {
           title: '新闻信息',
-          code: 'XWXX',
+          path: 'news/notice',
+          code: 'ZHXW',
+          color: 'volcano',
           list: res[1]?.object
         },
         {
           title: '学术活动',
+          path: 'research/academic_activity',
           code: 'XSHD',
+          color: 'cyan',
           list: res[2]?.object
         },
       ];
@@ -56,34 +65,37 @@ export default () => {
         dataSource={articleList}
         renderItem={item => (
           <List.Item key={uuidv4()}>
-            <Card style={{ minHeight: '300px' }} title={item.title}>
-              {
-                item.list.length > 0 ?
-                  item.list?.map(ele => (
-                    <List.Item.Meta
-                      key={uuidv4()}
-                      avatar={<Avatar src={ele.coverImgLink || 'http://82.156.213.198/medias/52542da4.png'} />}
-                      title={<Button type="link" onClick={() => {
-                        const { id } = ele;
-                        const { code } = item;
-                        navigate(`/content?id=${id}&code=${code}`)
-                      }}>
-                        <span style={{
-                          textAlign: 'left',
-                          fontSize: '18px',
-                          overflow: 'hidden',
-                          width: '400px',
-                          textOverflow: 'ellipsis', //文本溢出显示省略号
-                          whiteSpace: 'nowrap' //文本不会换行
-                        }}>{ele.title}</span>
-                        {/* <span>{ele.createTime?.split(' ')[0]}</span> */}
-                      </Button>}
-                    />
-                  )) :
-                  <Empty description="暂无内容" />
+            <Badge.Ribbon placement="start" text={item.title} color={item.color}>
+              <Card style={{ height: '350px' }} extra={<a onClick={() => {
+                const { code, path } = item;
+                navigate(`/${path}?code=${code}`)
+              }}>更多</a>}>
+                {
+                  item.list.length > 0 ?
+                    item.list?.map(ele => (
+                      <List.Item.Meta
+                        key={uuidv4()}
+                        title={
+                          <div className='title' onClick={() => {
+                            const { id } = ele;
+                            const { code } = item;
+                            navigate(`/content?id=${id}&code=${code}`)
+                          }}>
+                            <div className='textWrapper'>
+                              <CaretRightOutlined style={{ color: '#1890ff' }} />
+                              <div className='text'>{ele.title}{ele.title}{ele.title}</div>
+                            </div>
+                            <a className='date'>{ele.createTime?.split(' ')[0]}</a>
+                          </div>
 
-              }
-            </Card>
+                        }
+                      />
+                    )) :
+                    <Empty description="暂无内容" />
+
+                }
+              </Card>
+            </Badge.Ribbon>
           </List.Item>
         )
         }

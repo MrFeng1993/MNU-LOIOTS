@@ -1,21 +1,35 @@
 // @ts-nocheck
 import React, { useState } from 'react';
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, Input, BackTop } from 'antd';
 import { PageContainer } from '@ant-design/pro-components';
 import { useNavigate } from 'react-router-dom';
 import type { MenuProps } from 'antd';
 import { AppRoutes, MENU_ITEMS, ROUTERS } from '../router/routes';
+import { ArrowUpOutlined } from '@ant-design/icons';
 import SliderPage from './carousel';
 import FriendLink from './friendLink';
 import CopyRight from './CopyRight';
 import './App.css';
 
+
+const { Search } = Input;
 const App: React.FC = () => {
   const navigate = useNavigate();
 
   const handleMenuClick: MenuProps['onClick'] = (e) => {
     const targetMenuItem = ROUTERS.find(item => item.key === e.key);
     navigate(`${e.key}?code=${targetMenuItem?.meta?.code || 'home'}`);
+  };
+
+  const style: React.CSSProperties = {
+    height: 40,
+    width: 40,
+    lineHeight: '40px',
+    borderRadius: 4,
+    backgroundColor: '#1088e9',
+    color: '#fff',
+    textAlign: 'center',
+    fontSize: 14,
   };
 
   return (
@@ -25,17 +39,35 @@ const App: React.FC = () => {
         <header>
           <div className='header'>
             <div className='logo'>
-              <img className='logo-banner' src="http://82.156.213.198/medias/52542da4.png" alt="" />
+              <img className='logo-banner' src="http://82.156.213.198/medias/ecffd803.png" alt="" />
             </div>
-            <div className='desc'>物联网安全四川重点实验室</div>
+
+            <div style={{ position: "absolute", right: "60px" }}>
+              <Search
+                placeholder="输入关键字搜索"
+                allowClear
+                // onSearch={onSearch}
+                style={{
+                  width: 200,
+                }}
+              />
+            </div>
           </div>
         </header>
         <Menu
-          theme="dark"
+          theme="light"
           mode="horizontal"
           defaultSelectedKeys={['1']}
           items={MENU_ITEMS}
           onClick={handleMenuClick}
+          style={{
+            fontSize: "16px",
+            paddingLeft: "88px",
+            lineHeight: "70px",
+            position: 'sticky',
+            zIndex: '99999999',
+            top: '0px'
+          }}
         />
         {/* <SliderPage /> */}
         <Layout className="site-layout">
@@ -56,7 +88,11 @@ const App: React.FC = () => {
 
           <CopyRight />
         </div>
-
+        <BackTop>
+          <div style={style}>
+            <ArrowUpOutlined />
+          </div>
+        </BackTop>
       </Layout>
     </div >
   );

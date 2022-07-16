@@ -17,6 +17,7 @@ const Ckeditor = (props) => {
     ClassicEditor
       .create(document.querySelector('#editor'), {
         extraPlugins: [MyCustomUploadAdapterPlugin],
+        toolbar: ["undo", "redo", "|", "alignment", "bold", "italic", "blockQuote", "imageTextAlternative", "imageUpload", "heading", "link", "numberedList", "bulletedList"],
         // plugins: [Code],
         // extraPlugins: [BoldTest],
         mediaEmbed: {

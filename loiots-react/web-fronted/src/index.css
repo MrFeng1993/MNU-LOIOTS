@@ -24,3 +24,7 @@ code {
 .ck.ck-editor__main>.ck-editor__editable {
   border-color: 'none'
 }
+
+.ant-list-vertical .ant-list-item-meta {
+  border-bottom: 1px dashed #f0f0f0;
+}
