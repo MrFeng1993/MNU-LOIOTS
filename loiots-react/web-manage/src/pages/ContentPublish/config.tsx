@@ -1,5 +1,5 @@
 import { Button, message, Popconfirm, Tag } from 'antd';
-const getColumns = (ListOnArticle, TakeDownArticle, DelArticle, actionRef, mapping, goToEdit) => [
+const getColumns = (ListOnArticle, TakeDownArticle, DelArticle, actionRef, mapping) => [
   {
     title: '序号',
     width: 120,
@@ -32,9 +32,6 @@ const getColumns = (ListOnArticle, TakeDownArticle, DelArticle, actionRef, mappi
     valueType: 'option',
     render: (_, record) => [
       <>
-        <a onClick={() => {
-          goToEdit(record.id)
-        }}>编辑</a>
         {
           record.status === 0 ?
             (<Popconfirm
@@ -70,6 +67,7 @@ const getColumns = (ListOnArticle, TakeDownArticle, DelArticle, actionRef, mappi
               </a>
             </Popconfirm>
         }
+
         {
           record?.creator !== 'system' &&
           <Popconfirm
@@ -84,7 +82,7 @@ const getColumns = (ListOnArticle, TakeDownArticle, DelArticle, actionRef, mappi
             okText="是"
             cancelText="否"
           >
-            <a>删除</a>
+            <Button type='link' key="del">删除</Button>
           </Popconfirm>
         }
       </>

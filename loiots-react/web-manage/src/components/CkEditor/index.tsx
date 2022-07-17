@@ -7,7 +7,7 @@ import Ckeditor from './content';
 const ProFormCkeditor = (props) => {
   return (
     <ProForm.Item {...props}>
-      <Ckeditor {...props} />
+      <Ckeditor />
     </ProForm.Item>
   );
 };

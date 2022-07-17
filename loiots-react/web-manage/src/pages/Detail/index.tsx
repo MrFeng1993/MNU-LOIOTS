@@ -3,7 +3,7 @@ import type { ActionType, ProColumns } from '@ant-design/pro-components';
 import { ProTable, TableDropdown } from '@ant-design/pro-components';
 import { Button, Dropdown, Menu, Space, Tag } from 'antd';
 import React, { useRef } from 'react';
-import * as XLSX from 'xlsx';
+// import * as XLSX from 'xlsx';
 // import request from 'umi-request';
 
 type GithubIssueItem = {
