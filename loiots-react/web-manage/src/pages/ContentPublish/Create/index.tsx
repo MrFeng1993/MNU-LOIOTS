@@ -5,7 +5,9 @@ import type { ProFormInstance } from '@ant-design/pro-components';
 import { Col, message, Row, Space } from 'antd';
 import { useState } from 'react';
 import ProFormCkeditor from '../../../components/CkEditor';
-import { AddArticle, getMenuDict } from '../../../api/ContentPublish';
+import { v4 as uuidv4 } from 'uuid';
+import useUrlState from '@ahooksjs/use-url-state';
+import { AddArticle, getMenuDict, getArticle } from '../../../api/ContentPublish';
 import { getUploadProps } from '../../../utils';
 
 export default () => {
@@ -13,6 +15,9 @@ export default () => {
   const formRef = useRef<ProFormInstance>();
   const [fileList, setFileList] = useState([]);
   const [options, setOptions] = useState([]);
+  const queryParams = useUrlState({ code: '' })[0];
+  const [detailInfo, setDetailInfo] = useState('')
+  const { type, id } = queryParams;
 
   const formItemLayout = {
     labelCol: { span: 4 },
@@ -23,6 +28,28 @@ export default () => {
     const { fileList } = file;
     setFileList(fileList);
   }
+
+  const getDataDetail = async () => {
+    const data = await getArticle(id)
+    formRef?.current?.setFieldsValue({
+      ...data
+    });
+    setDetailInfo(data?.content);
+    setFileList([
+      {
+        uid: uuidv4(),
+        name: data?.coverImgLink?.split('/')?.pop() || '',
+        url: data?.coverImgLink,
+      }
+    ])
+  }
+
+
+  useEffect(() => {
+    if (type === 'edit' && id) {
+      getDataDetail()
+    }
+  }, [id, type])
 
   const getOptions = async () => {
     const arr = ['LXWM', 'SYSJJ', 'SYSAS', 'RCQK']
@@ -60,7 +87,14 @@ export default () => {
         },
       }}
       onFinish={async (values) => {
-        AddArticle(values).then(res => {
+        let payload = values
+        if (type === 'edit') {
+          payload = {
+            ...values,
+            id
+          }
+        }
+        AddArticle(payload).then(res => {
           history.go(-1)
           message.success('提交成功');
         })
@@ -93,6 +127,7 @@ export default () => {
         rules={[{ required: true, message: '请选择栏目' }]}
       />
       <ProFormCkeditor width="md"
+        defaultValue={detailInfo}
         rules={[{ required: true, message: '请填写内容' }]}
         name="content"
         label="内容" />

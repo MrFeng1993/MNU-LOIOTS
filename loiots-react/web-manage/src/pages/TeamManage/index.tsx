@@ -6,7 +6,7 @@ import { ProTable } from '@ant-design/pro-components';
 import { Button, Tag, Tooltip, Input } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { getColumns } from './config';
-import { getResearcher, moveUpResearcher, moveDownResearcher, delResearcher } from '../../api/TeamManage';
+import { getResearcherList, moveUpResearcher, moveDownResearcher, delResearcher } from '../../api/TeamManage';
 
 
 
@@ -16,16 +16,20 @@ export default () => {
   const navigate = useNavigate();
   const actionRef = useRef<ActionType>();
 
+  const goToEdit = (id: string) => {
+    navigate(`/team_manage/create?type=edit&id=${id}`);
+  }
+
   return (
     <ProTable
       cardBordered
       actionRef={actionRef}
       // @ts-ignore ts-message: Property 'columns' is missing in type '{}' but required in type 'ProTableProps<TableListItem>'.
-      columns={getColumns(moveUpResearcher, moveDownResearcher, delResearcher, actionRef)}
+      columns={getColumns(moveUpResearcher, moveDownResearcher, delResearcher, actionRef, goToEdit)}
       request={async (params, sorter, filter) => {
         console.log(params, filter);
         const { current, pageSize, name } = params;
-        const data = await getResearcher({
+        const data = await getResearcherList({
           currentNo: current,
           pageSize: pageSize,
           name: name

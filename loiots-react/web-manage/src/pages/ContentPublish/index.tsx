@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import type { ActionType } from '@ant-design/pro-components';
 import { getColumns } from './config';
-import { getArticle, ListOnArticle, TakeDownArticle, DelArticle, getMenuDict } from '../../api/ContentPublish';
+import { getArticleList, ListOnArticle, TakeDownArticle, DelArticle, getMenuDict } from '../../api/ContentPublish';
 
 
 
@@ -26,16 +26,20 @@ export default () => {
     data && setMapping(data as any)
   }
 
+  const goToEdit = (id: string) => {
+    navigate(`/content_publish/create?type=edit&id=${id}`);
+  }
+
 
   return (
     <ProTable
       actionRef={actionRef}
       cardBordered
       // @ts-ignore ts-message: Property 'columns' is missing in type '{}' but required in type 'ProTableProps<TableListItem>'.
-      columns={getColumns(ListOnArticle, TakeDownArticle, DelArticle, actionRef, mapping)}
+      columns={getColumns(ListOnArticle, TakeDownArticle, DelArticle, actionRef, mapping, goToEdit)}
       request={async (params, sorter, filter) => {
         const { current, pageSize, part } = params;
-        const data = await getArticle({
+        const data = await getArticleList({
           ...params,
           currentNo: current,
           pageSize: pageSize,

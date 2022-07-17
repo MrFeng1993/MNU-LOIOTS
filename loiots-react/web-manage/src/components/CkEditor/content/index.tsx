@@ -11,15 +11,20 @@ function MyCustomUploadAdapterPlugin(editor) {
   };
 }
 
+let newEditor = null
+
 const Ckeditor = (props) => {
-  const { onChange, value } = props
+  const { onChange, defaultValue } = props
+
+  useEffect(() => {
+    newEditor && defaultValue && newEditor.setData(defaultValue.toString());
+  }, [defaultValue])
+
   useEffect(() => {
     ClassicEditor
       .create(document.querySelector('#editor'), {
         extraPlugins: [MyCustomUploadAdapterPlugin],
         toolbar: ["undo", "redo", "|", "alignment", "bold", "italic", "blockQuote", "imageTextAlternative", "imageUpload", "heading", "link", "numberedList", "bulletedList"],
-        // plugins: [Code],
-        // extraPlugins: [BoldTest],
         mediaEmbed: {
           previewsInData: true
         },
@@ -30,7 +35,8 @@ const Ckeditor = (props) => {
         data: '<p>请开始创作吧</p>'
       })
       .then(editor => {
-        value && editor.setData(value);
+        newEditor = editor
+        defaultValue && editor.setData(defaultValue.toString());
         editor.model.document.on('change:data', (data) => {
           onChange(editor.getData())
           console.log('您在写什么', editor.getData());

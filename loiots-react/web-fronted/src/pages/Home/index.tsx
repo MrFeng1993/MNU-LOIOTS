@@ -83,7 +83,7 @@ export default () => {
                           }}>
                             <div className='textWrapper'>
                               <CaretRightOutlined style={{ color: '#1890ff' }} />
-                              <div className='home_text'>{ele.title}{ele.title}{ele.title}</div>
+                              <div className='home_text'>{ele.title}</div>
                             </div>
                             <a className='home_date'>{ele.createTime?.split(' ')[0]}</a>
                           </div>

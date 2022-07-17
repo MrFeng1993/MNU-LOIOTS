@@ -1,17 +1,23 @@
 // @ts-nocheck
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import { ProForm, ProFormRadio, ProFormText, ProFormUploadButton } from '@ant-design/pro-components';
 import type { ProFormInstance } from '@ant-design/pro-components';
 import { Col, message, Row, Space } from 'antd';
 import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import useUrlState from '@ahooksjs/use-url-state';
 import ProFormCkeditor from '../../../components/CkEditor';
-import { AddResearcher } from '../../../api/TeamManage';
+import { AddResearcher, getResearcher } from '../../../api/TeamManage';
 import { getUploadProps } from '../../../utils';
 
 
 export default () => {
   const formRef = useRef<ProFormInstance>();
   const [fileList, setFileList] = useState([]);
+  const [detailInfo, setDetailInfo] = useState('')
+  const queryParams = useUrlState({ code: '' })[0];
+  const { type, id } = queryParams;
+
 
   const formItemLayout = {
     labelCol: { span: 4 },
@@ -23,6 +29,27 @@ export default () => {
     setFileList(fileList);
   }
 
+  const getDataDetail = async () => {
+    const data = await getResearcher(id)
+    formRef?.current?.setFieldsValue({
+      ...data
+    });
+    setDetailInfo(data?.detailInfo);
+    setFileList([
+      {
+        uid: uuidv4(),
+        name: data?.profileImgLink?.split('/')?.pop() || '',
+        url: data?.profileImgLink,
+      }
+    ])
+  }
+
+
+  useEffect(() => {
+    if (type === 'edit' && id) {
+      getDataDetail()
+    }
+  }, [id, type])
 
   return (
     <ProForm
@@ -31,7 +58,6 @@ export default () => {
       formRef={formRef}
       submitter={{
         render: (props, doms) => {
-          console.log(props, doms);
           return (
             <Row>
               <Col span={14} offset={4}>
@@ -42,8 +68,14 @@ export default () => {
         },
       }}
       onFinish={async (values) => {
-        console.log(values);
-        AddResearcher(values).then(res => {
+        let payload = values
+        if (type === 'edit') {
+          payload = {
+            ...values,
+            id
+          }
+        }
+        AddResearcher(payload).then(res => {
           message.success('提交成功');
           history.go(-1)
         })
@@ -66,11 +98,10 @@ export default () => {
       />
       <ProFormText
         width="md"
-        name="desc"
-        label="概述"
-        placeholder="请输入概述"
-        tooltip="最长为 24 位"
-        rules={[{ required: true, message: '请填写概述' }]}
+        name="descr"
+        label="介绍"
+        placeholder="请填写介绍"
+        rules={[{ required: true, message: '请填写介绍' }]}
       />
       <ProFormUploadButton max={1} fieldProps={{
         ...getUploadProps(setFileList, formRef, 'profileImgLink'),
@@ -78,7 +109,9 @@ export default () => {
         onChange: handleChange
       }} label="图片" name="profileImgLink"
       />
-      <ProFormCkeditor width="large"
+      <ProFormCkeditor
+        defaultValue={detailInfo}
+        width="large"
         rules={[{ required: true, message: '请填写内容' }]}
         name="detailInfo"
         label="内容" />

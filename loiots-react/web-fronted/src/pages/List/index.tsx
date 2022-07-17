@@ -23,7 +23,6 @@ export default () => {
   const [mapping, setMapping] = useState({})
   const [dataSource, serDataSoure] = useState([])
 
-
   useEffect(() => {
     getData()
   }, [code])
