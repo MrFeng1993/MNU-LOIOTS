@@ -4,6 +4,8 @@ import { UserOutlined, VideoCameraOutlined, UploadOutlined, LinkOutlined, EditOu
 import Home from '../pages/Home';
 import TeamManage from '../pages/TeamManage';
 import TeamManageCreate from '../pages/TeamManage/Create';
+import BannerCnofig from '../pages/BannerCnofig';
+import BannerCnofigCreate from '../pages/BannerCnofig/Create';
 import ContentPublish from '../pages/ContentPublish';
 import ContentPublishCreate from '../pages/ContentPublish/Create';
 import FriendLink from '../pages/FriendLink';
@@ -92,10 +94,26 @@ const menuItemsArr = [
         icon: <VideoCameraOutlined />,
     },
     {
+        path: '/banner_config',
+        key: '/banner_config',
+        label: '轮播图管理',
+        visible: true,
+        element: <BannerCnofig />,
+        icon: <UserOutlined />
+    },
+    {
+        path: '/banner_config/create',
+        key: '/banner_config',
+        visible: true,
+        type: 'sub',
+        element: <BannerCnofigCreate />,
+        icon: <UserOutlined />
+    },
+    {
         path: '/friend_link',
         key: '/friend_link',
         label: '友情链接',
-        visible: true,
+        visible: false,
         element: <FriendLink />,
         icon: <LinkOutlined />,
     },
@@ -103,7 +121,7 @@ const menuItemsArr = [
         path: '/friend_link/Create',
         key: '/friend_link_create',
         label: '友情链接',
-        visible: true,
+        visible: false,
         type: 'sub',
         element: <FriendLinkCreate />,
         icon: <LinkOutlined />,

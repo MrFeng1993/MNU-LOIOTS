@@ -34,7 +34,7 @@ const App: React.FC = () => {
         <Menu
           theme="dark"
           mode="inline"
-          defaultSelectedKeys={['/']}
+          defaultSelectedKeys={['/team_manage']}
           onClick={handleMenuClick}
           items={menuItems}
         />
