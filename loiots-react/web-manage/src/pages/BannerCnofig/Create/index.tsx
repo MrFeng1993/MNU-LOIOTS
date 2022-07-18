@@ -65,7 +65,7 @@ export default () => {
           routes: [
             {
               path: '/banner_config',
-              breadcrumbName: '轮播图配置',
+              breadcrumbName: '轮播图管理',
             },
             {
               path: '',
