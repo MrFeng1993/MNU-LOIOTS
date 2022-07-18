@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Layout, Menu } from 'antd';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import useUrlState from '@ahooksjs/use-url-state';
 import type { MenuProps } from 'antd';
 import {
   MenuFoldOutlined,
@@ -17,8 +18,20 @@ const { Header, Sider, Content } = Layout;
 const App: React.FC = () => {
   const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
+  const [selecetdMenu, setSelectedMenu] = useState('')
+  const queryParams = useUrlState()[0];
+  const location = useLocation();
+  const { pathname } = location;
+
+
+  useEffect(() => {
+    setSelectedMenu(pathname);
+  }, [pathname])
+
 
   const handleMenuClick = (e: any) => {
+    console.log(e.key);
+    setSelectedMenu(e.key);
     navigate(e.key, {
       replace: true,
     });
@@ -34,7 +47,7 @@ const App: React.FC = () => {
         <Menu
           theme="dark"
           mode="inline"
-          defaultSelectedKeys={['/team_manage']}
+          selectedKeys={[selecetdMenu]}
           onClick={handleMenuClick}
           items={menuItems}
         />

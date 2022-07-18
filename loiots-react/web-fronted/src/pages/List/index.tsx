@@ -87,7 +87,7 @@ export default () => {
             },
           }}
         >
-          <WaterMark content="物联网安全重点实验室">
+          <WaterMark content="物联网安全四川省高校重点实验室">
             <ProList<{ title: string }>
               itemLayout="vertical"
               rowKey="id"

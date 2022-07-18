@@ -27,7 +27,7 @@ const Content: React.FC = () => {
     <div style={{ margin: '2% 2%', minHeight: '60vh' }}>
       {
         data ?
-          <WaterMark content="物联网安全重点实验室">
+          <WaterMark content="物联网安全四川省高校重点实验室">
             <div>
               <div className='content_title-content'>
                 <span>{data.title || data.name}</span>

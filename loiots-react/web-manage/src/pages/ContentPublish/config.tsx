@@ -10,7 +10,7 @@ const getColumns = (ListOnArticle, TakeDownArticle, DelArticle, actionRef, mappi
     title: '栏目',
     width: 120,
     dataIndex: 'part',
-    render: (text, record) => mapping[text]
+    render: (text, record) => mapping && mapping[text]
   },
   {
     title: '标题',

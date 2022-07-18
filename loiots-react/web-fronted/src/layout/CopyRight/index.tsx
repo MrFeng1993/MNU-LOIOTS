@@ -15,9 +15,8 @@ const Content: React.FC = () => {
       lineHeight: '180px',
       justifyContent: 'center'
     }}>
-      <div>绵阳师范物联网安全四川重点实验室 地址：绵阳市高新区绵兴西路166号  邮编：621000</div>
-    </div >
-
+      <div>物联网安全四川省高校重点实验室 地址：绵阳市高新区绵兴西路166号  邮编：621000</div>
+    </div>
   )
 
 };
