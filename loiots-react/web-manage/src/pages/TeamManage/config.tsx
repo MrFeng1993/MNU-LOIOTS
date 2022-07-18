@@ -1,6 +1,6 @@
 import { message, Popconfirm } from 'antd';
 
-const getColumns = (moveUpResearcher, moveDownResearcher, delResearcher, actionRef) => [
+const getColumns = (moveUpResearcher, moveDownResearcher, delResearcher, actionRef, goToEdit) => [
   {
     title: '序号',
     width: 120,
@@ -31,12 +31,18 @@ const getColumns = (moveUpResearcher, moveDownResearcher, delResearcher, actionR
             actionRef.current.reload()
           })
         }}>上移</a>,
-        <a key="2" onClick={() => {
+
+        <a key="3" onClick={() => {
           moveDownResearcher(record?.id).then(() => {
             message.success('下移成功')
             actionRef.current.reload()
           })
         }}>下移</a>,
+
+        <a key="2" onClick={() => {
+          goToEdit && goToEdit(record.id)
+        }}>编辑</a>,
+
         <Popconfirm
           key="del"
           title="确认要删除吗?"

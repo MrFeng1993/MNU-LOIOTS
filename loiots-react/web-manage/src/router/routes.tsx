@@ -17,7 +17,8 @@ const menuItemsArr = [
     {
         path: '/',
         key: '/',
-        label: 'Home',
+        visible: true,
+        type: 'sub',
         element: <Home />,
         icon: <UserOutlined />
     },

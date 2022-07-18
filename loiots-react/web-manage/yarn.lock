@@ -2,6 +2,14 @@
 # yarn lockfile v1
 
 
+"@ahooksjs/use-url-state@^3.5.0":
+  "integrity" "sha512-DGKV9py3GMIvF0nRSr+fvuZsHRarT6y+XYNl5UnzLoszTwVJGh3hr27EJ97vEMSilI9POFf91MLKFyfkE1t44A=="
+  "resolved" "https://mirrors.tencent.com/npm/@ahooksjs%2fuse-url-state/-/use-url-state-3.5.0.tgz"
+  "version" "3.5.0"
+  dependencies:
+    "ahooks" "^3.4.1"
+    "query-string" "^6.9.0"
+
 "@ampproject/remapping@^2.1.0":
   "integrity" "sha512-qRmjj8nj9qmLTQXXmaR1cck3UXSRMPrbsLJAasZpF+t3riI71BXed5ebIOYwQntykeZuhjsdweEc9BxH5Jc26w=="
   "resolved" "https://mirrors.tencent.com/npm/@ampproject%2fremapping/-/remapping-2.2.0.tgz"
@@ -2963,7 +2971,7 @@
   "resolved" "https://mirrors.tencent.com/npm/ahooks-v3-count/-/ahooks-v3-count-1.0.0.tgz"
   "version" "1.0.0"
 
-"ahooks@^3.5.2":
+"ahooks@^3.4.1", "ahooks@^3.5.2":
   "integrity" "sha512-0OrV3/9s339comBg/F+d9Q7lhZERZK3K5f1J8ebK3z076Kc4KkeGc1MLalFRG+95nVA0wUCZ71oJMs66fIU2Uw=="
   "resolved" "https://mirrors.tencent.com/npm/ahooks/-/ahooks-3.5.2.tgz"
   "version" "3.5.2"
@@ -5137,6 +5145,11 @@
   "version" "7.0.1"
   dependencies:
     "to-regex-range" "^5.0.1"
+
+"filter-obj@^1.1.0":
+  "integrity" "sha1-mzERErxsYSehbgFsbF1/GeCAXFs="
+  "resolved" "https://mirrors.tencent.com/npm/filter-obj/-/filter-obj-1.1.0.tgz"
+  "version" "1.1.0"
 
 "finalhandler@1.2.0":
   "integrity" "sha512-5uXcUVftlQMFnWC9qu/svkWv3GTd2PfUhK/3PLkYNAe7FbqJMt3515HaxE6eRL74GdsriiwujiawdaB1BpEISg=="
@@ -8139,6 +8152,16 @@
   dependencies:
     "side-channel" "^1.0.4"
 
+"query-string@^6.9.0":
+  "integrity" "sha512-XDxAeVmpfu1/6IjyT/gXHOl+S0vQ9owggJ30hhWKdHAsNPOcasn5o9BW0eejZqL2e4vMjhAxoW3jVHcD6mbcYw=="
+  "resolved" "https://mirrors.tencent.com/npm/query-string/-/query-string-6.14.1.tgz"
+  "version" "6.14.1"
+  dependencies:
+    "decode-uri-component" "^0.2.0"
+    "filter-obj" "^1.1.0"
+    "split-on-first" "^1.0.0"
+    "strict-uri-encode" "^2.0.0"
+
 "queue-microtask@^1.2.2":
   "integrity" "sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A=="
   "resolved" "https://mirrors.tencent.com/npm/queue-microtask/-/queue-microtask-1.2.3.tgz"
@@ -8686,7 +8709,7 @@
     "history" "^5.2.0"
     "react-router" "6.3.0"
 
-"react-router@6.3.0":
+"react-router@^5.0.0 || ^6.0.0", "react-router@6.3.0":
   "integrity" "sha512-7Wh1DzVQ+tlFjkeo+ujvjSqSJmkt1+8JO+T5xklPlgrh70y7ogx75ODRW0ThWhY7S+6yEDks8TYrtQe/aoboBQ=="
   "resolved" "https://mirrors.tencent.com/npm/react-router/-/react-router-6.3.0.tgz"
   "version" "6.3.0"
@@ -9385,6 +9408,11 @@
     "select-hose" "^2.0.0"
     "spdy-transport" "^3.0.0"
 
+"split-on-first@^1.0.0":
+  "integrity" "sha512-43ZssAJaMusuKWL8sKUBQXHWOpq8d6CfN/u1p4gUzfJkM05C8rxTmYrkIPTXapZpORA6LkkzcUulJ8FqA7Uudw=="
+  "resolved" "https://mirrors.tencent.com/npm/split-on-first/-/split-on-first-1.1.0.tgz"
+  "version" "1.1.0"
+
 "sprintf-js@~1.0.2":
   "integrity" "sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw="
   "resolved" "https://mirrors.tencent.com/npm/sprintf-js/-/sprintf-js-1.0.3.tgz"
@@ -9416,6 +9444,11 @@
   "integrity" "sha512-RwNA9Z/7PrK06rYLIzFMlaF+l73iwpzsqRIFgbMLbTcLD6cOao82TaWefPXQvB2fOC4AjuYSEndS7N/mTCbkdQ=="
   "resolved" "https://mirrors.tencent.com/npm/statuses/-/statuses-2.0.1.tgz"
   "version" "2.0.1"
+
+"strict-uri-encode@^2.0.0":
+  "integrity" "sha1-ucczDHBChi9rFC3CdLvMWGbONUY="
+  "resolved" "https://mirrors.tencent.com/npm/strict-uri-encode/-/strict-uri-encode-2.0.0.tgz"
+  "version" "2.0.0"
 
 "string_decoder@^1.1.1":
   "integrity" "sha512-hkRX8U1WjJFd8LsDJ2yQ/wWWxaopEsABU1XfkM8A+j0+85JAGppt16cr1Whg6KIbb4okU6Mql6BOj+uup/wKeA=="
@@ -10497,11 +10530,6 @@
   "integrity" "sha512-JDAgSYQ1ksuwqfChJusw1LSJ8BizJ2e/vVu5Lxjq3YvNJNlROv1ui4i+c/kUUrPheBvQl4c5UbERhTwKa6QBJQ=="
   "resolved" "https://mirrors.tencent.com/npm/ws/-/ws-8.8.0.tgz"
   "version" "8.8.0"
-
-"xlsx@https://cdn.sheetjs.com/xlsx-0.18.9/xlsx-0.18.9.tgz":
-  "integrity" "sha512-ru2425diC7gjPT93C0aJ1amOz50IKH7ocv0wpA6+cGhdUt8hwsXIsIZ4siFojvvk6L0QVFN7F5K8WgXdeg6Dkg=="
-  "resolved" "https://cdn.sheetjs.com/xlsx-0.18.9/xlsx-0.18.9.tgz"
-  "version" "0.18.9"
 
 "xml-name-validator@^3.0.0":
   "integrity" "sha512-A5CUptxDsvxKJEU3yO6DuWBSJz/qizqzJKOMIfUJHETbBw/sFaDxgd6fxm1ewUaM0jZ444Fc5vC5ROYurg/4Pw=="

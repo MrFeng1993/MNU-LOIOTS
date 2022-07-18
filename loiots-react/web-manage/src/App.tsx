@@ -19,7 +19,6 @@ const App: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
 
   const handleMenuClick = (e: any) => {
-    console.log('path', e);
     navigate(e.key, {
       replace: true,
     });
@@ -35,7 +34,7 @@ const App: React.FC = () => {
         <Menu
           theme="dark"
           mode="inline"
-          defaultSelectedKeys={['1']}
+          defaultSelectedKeys={['/']}
           onClick={handleMenuClick}
           items={menuItems}
         />

@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "uuid": "^8.3.2",
+    "@ahooksjs/use-url-state": "^3.5.0",
     "@ant-design/icons": "^4.7.0",
     "@ant-design/pro-components": "^1.1.5",
     "@ckeditor/ckeditor5-basic-styles": "^34.2.0",

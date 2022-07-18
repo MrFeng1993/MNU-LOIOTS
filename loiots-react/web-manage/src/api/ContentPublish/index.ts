@@ -8,12 +8,16 @@ export const getMenuDict = () => {
   return request.get('article/getPartMap');
 };
 
-export const getArticle = (data) => {
+export const getArticleList = (data) => {
   return request.post('article/ig/search', data);
 };
 
 export const ListOnArticle = (path) => {
   return request.get(`/article/launch/1/${path}`);
+};
+
+export const getArticle = (id) => {
+  return request.get(`article/ig/findOne/${id}`);
 };
 
 

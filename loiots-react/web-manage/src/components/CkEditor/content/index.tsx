@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import '@ckeditor/ckeditor5-build-classic/build/translations/zh-cn';
 import MyUploadAdapter from "../upload";
-import str from '../config';
 
 
 function MyCustomUploadAdapterPlugin(editor) {
@@ -11,14 +10,19 @@ function MyCustomUploadAdapterPlugin(editor) {
   };
 }
 
+let newEditor = null
+
 const Ckeditor = (props) => {
   const { onChange, value } = props
+
+  useEffect(() => {
+    value && newEditor.setData(value.toString())
+  }, [value])
+
   useEffect(() => {
     ClassicEditor
       .create(document.querySelector('#editor'), {
         extraPlugins: [MyCustomUploadAdapterPlugin],
-        // plugins: [Code],
-        // extraPlugins: [BoldTest],
         mediaEmbed: {
           previewsInData: true
         },
@@ -29,10 +33,9 @@ const Ckeditor = (props) => {
         data: '<p>请开始创作吧</p>'
       })
       .then(editor => {
-        value && editor.setData(value);
+        newEditor = editor
         editor.model.document.on('change:data', (data) => {
           onChange(editor.getData())
-          console.log('您在写什么', editor.getData());
         });
       })
       .catch(error => {
