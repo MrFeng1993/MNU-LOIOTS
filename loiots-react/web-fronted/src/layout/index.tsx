@@ -80,11 +80,11 @@ const App: React.FC = () => {
             <AppRoutes />
           </div>
         </Layout>
-        <FriendLink />
 
         <div style={{
           backgroundImage: 'url("http://www.mnu.cn/images/footer-bg.jpg")'
         }}>
+          <FriendLink />
 
           <CopyRight />
         </div>

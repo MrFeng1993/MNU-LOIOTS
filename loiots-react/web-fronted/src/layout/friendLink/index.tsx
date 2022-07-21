@@ -14,17 +14,24 @@ const data = [
 ]
 
 const App: React.FC = () => (
-  <div style={{ color: 'black', lineHeight: '60px', cursor: 'pointer', backgroundColor: '#e6e6e6', width: '100%', paddingLeft: '20px', textAlign: 'center' }}>
-    <span style={{ fontSize: '16px' }}>
+  <div style={{ color: 'black', lineHeight: '60px', cursor: 'pointer', width: '100%', paddingLeft: '20px', textAlign: 'center' }}>
+    <span style={{
+      fontSize: '16px',
+      color: 'white',
+      marginRight: '3px'
+    }}>
       友情链接：
     </span>
-    <span>
+    <div style={{
+      display: 'inline-block',
+      color: 'white',
+    }}>
       {
         data.map(item => <span onClick={() => {
           location.href = item.url
-        }} style={{ display: 'inline-block', marginRight: '20px', fontSize: '18px', }}>{item.id}</span>)
+        }} style={{ display: 'inline-block', paddingLeft: '15px', lineHeight: '15px', marginRight: '20px', fontSize: '16px', borderLeft: '1px solid white', }}>{item.id}</span>)
       }
-    </span>
+    </div>
   </div >
 );
 

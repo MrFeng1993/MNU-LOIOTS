@@ -17,11 +17,10 @@ const App = () => {
         <img src="http://www.mnu.cn/images/banner/tsg.jpg" alt="" />
       </div>
       <div className='img-wrapper'>
-        <img src="http://xg.mnu.cn/img/001.png" alt="" />
+        <img src="http://www.mnu.cn/images/banner/tsg.jpg" alt="" />
       </div>
-
       <div className='img-wrapper'>
-        <img src="http://xg.mnu.cn/img/004.png" alt="" />
+        <img src="http://www.mnu.cn/images/banner/tsg.jpg" alt="" />
       </div>
     </Carousel >
   );

@@ -45,8 +45,6 @@ const Acorn: React.FC = () => {
 
     return <div>
         <span className='text-2xl'>Acorn parse Demo:</span>
-        {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-        {/* @ts-ignore */}
         <SplitEditor
             {...EDITOR_CONFIG}
             value={value}
