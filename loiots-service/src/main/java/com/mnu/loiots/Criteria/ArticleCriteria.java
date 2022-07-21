@@ -84,12 +84,12 @@ public class ArticleCriteria extends Criteria<ArticleInfo> {
         BeanUtils.copyProperties(c,ret);
 
         //列表查询去掉详细内容信息（占空间）
-        if (ret.getObject() != null){
-            List<ArticleInfo> users = (List<ArticleInfo>)ret.getObject();
-            users.stream().forEach(u -> {
-                u.setContent("");
-            });
-        }
+//        if (ret.getObject() != null){
+//            List<ArticleInfo> users = (List<ArticleInfo>)ret.getObject();
+//            users.stream().forEach(u -> {
+//                u.setContent("");
+//            });
+//        }
         return ret;
     }
 
