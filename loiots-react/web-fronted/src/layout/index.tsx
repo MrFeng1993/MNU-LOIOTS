@@ -39,7 +39,7 @@ const App: React.FC = () => {
         <header>
           <div className='header'>
             <div className='logo'>
-              <img className='logo-banner' src="http://82.156.213.198/medias/ecffd803.png" alt="" />
+              <img className='logo-banner'  src="logo2.png" alt="" />
             </div>
 
             <div>
