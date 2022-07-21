@@ -43,7 +43,7 @@ public class ArticleInfo {
      * YJFX-研究方向
      * YJCG-研究成果
      * XSHD-学术活动
-     * SYSGLZFD-实验室管理制度
+     * SYSGLZD-实验室管理制度
      * SYSAQ-实验室安全
      * XMHZ-项目合作
      * LXWM-联系我们
@@ -56,7 +56,10 @@ public class ArticleInfo {
     @Column(columnDefinition = "text")
     private String coverImgLink;//封面图链接
 
+    private String creator;//创建者：system--系统自动初始化
+
     private Byte status;//0-下架   1-上架
+
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")

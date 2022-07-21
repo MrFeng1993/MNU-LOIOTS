@@ -22,8 +22,9 @@
 }
 
 .header {
-  background-color: #014a95;
-  height: 100px;
+  /* background-color: #014a95; */
+  background-image: url(/public/banner.png);
+  height: 150px;
   align-items: center;
   padding: 0 60px;
   display: flex;
@@ -37,7 +38,7 @@
 }
 
 .logo-banner {
-  width: 350px;
+  width: 625px;
   vertical-align: middle;
 }
 
