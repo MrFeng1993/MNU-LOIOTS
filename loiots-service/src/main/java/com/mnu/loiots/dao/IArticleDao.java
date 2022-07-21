@@ -16,5 +16,7 @@ public interface IArticleDao extends ICustomRepository<ArticleInfo,Long> {
 
     boolean existsById(Long id);
 
+    boolean existsByCreator(String c);
+
 
 }

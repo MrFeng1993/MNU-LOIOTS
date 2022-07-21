@@ -1,13 +1,7 @@
 package com.mnu.loiots;
 
-import com.mnu.loiots.dao.IMenuDao;
-import com.mnu.loiots.dao.IMyRoleDao;
-import com.mnu.loiots.dao.IMyUserDao;
-import com.mnu.loiots.dao.IRoleMenuDao;
-import com.mnu.loiots.entity.Menu;
-import com.mnu.loiots.entity.MyRole;
-import com.mnu.loiots.entity.MyUser;
-import com.mnu.loiots.entity.RoleMenu;
+import com.mnu.loiots.dao.*;
+import com.mnu.loiots.entity.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.Configuration;
@@ -37,6 +31,9 @@ public class LoiotsStartInitHandler implements InitializingBean {
     @Resource
     private IRoleMenuDao roleMenuDao;
 
+    @Resource
+    private IArticleDao articleDao;
+
 
     @Resource
     private PasswordEncoder passwordEncoder;
@@ -51,6 +48,8 @@ public class LoiotsStartInitHandler implements InitializingBean {
             initSysDefaultRoleAndUser();
 
             initSysDefaultMenu();
+
+            initDefaultArticle();
 
             log.info("系统初始化完成");
 
@@ -91,6 +90,43 @@ public class LoiotsStartInitHandler implements InitializingBean {
         }
     }
 
+    /**
+     * 初始化唯一动态
+     * /**
+     *      * -----栏目
+     *      * SYSJJ-实验室简介 1
+     *      * ZHXW-综合新闻
+     *      * TZGG-通知公告
+     *      * RCQK-人才情况 1
+     *      * JSDT-教师动态
+     *      * YJFX-研究方向
+     *      * YJCG-研究成果
+     *      * XSHD-学术活动
+     *      * SYSGLZD-实验室管理制度
+     *      * SYSAQ-实验室安全 1
+     *      * XMHZ-项目合作
+     *      * LXWM-联系我们 1
+     *      *
+     */
+    @Transactional
+    public void initDefaultArticle(){
+
+        boolean e = articleDao.existsByCreator("system");
+        if (!e){
+            log.info("开始动态初始化...");
+            String content = "等待创建内容";
+            List<ArticleInfo> articleInfos = new ArrayList<>();
+            articleInfos.add(new ArticleInfo(null,"实验室简介","SYSJJ",content,null,"system",(byte)1,new Date()));
+            articleInfos.add(new ArticleInfo(null,"人才情况","RCQK",content,null,"system",(byte)1,new Date()));
+            articleInfos.add(new ArticleInfo(null,"实验室安全","SYSAQ",content,null,"system",(byte)1,new Date()));
+            articleInfos.add(new ArticleInfo(null,"联系我们","LXWM",content,null,"system",(byte)1,new Date()));
+            articleDao.saveAll(articleInfos);
+
+            log.info("动态初始化完成");
+        }
+
+
+    }
     /**
      * 初始化系统默认角色和超级管理员
      */

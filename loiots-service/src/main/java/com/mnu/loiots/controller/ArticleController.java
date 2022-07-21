@@ -1,5 +1,6 @@
 package com.mnu.loiots.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.mnu.loiots.Criteria.ArticleCriteria;
 import com.mnu.loiots.Criteria.ResearcherCriteria;
 import com.mnu.loiots.dao.IArticleDao;
@@ -143,6 +144,37 @@ public class ArticleController {
         try {
             articleService.launch(id,status);
             return new JsonModel(true,"操作成功",null);
+        }  catch (Exception e) {
+            log.error(e.getMessage(),e);
+            return new JsonModel(false,"文章上下架接口错误",null);
+        }
+
+
+    }
+
+    /**
+     * 文章上下架
+     * 0-下架   1-上架
+     * @return
+     */
+    @RequestMapping(value = "getPartMap",method = RequestMethod.GET)
+    public JsonModel getPartMap(){
+
+        try {
+            JSONObject ret = new JSONObject();
+            ret.put("SYSJJ","实验室简介");
+            ret.put("ZHXW","综合新闻");
+            ret.put("TZGG","通知公告");
+            ret.put("RCQK","人才情况");
+            ret.put("JSDT","教师动态");
+            ret.put("YJFX","研究方向");
+            ret.put("YJCG","研究成果");
+            ret.put("XSHD","学术活动");
+            ret.put("SYSGLZD","实验室管理制度");
+            ret.put("SYSAQ","实验室安全");
+            ret.put("XMHZ","项目合作");
+            ret.put("LXWM","联系我们");
+            return new JsonModel(true,"操作成功",ret);
         }  catch (Exception e) {
             log.error(e.getMessage(),e);
             return new JsonModel(false,"文章上下架接口错误",null);

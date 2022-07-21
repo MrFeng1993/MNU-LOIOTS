@@ -93,7 +93,7 @@ public class FriendlyLinkController {
      * @return
      */
     @RequestMapping(value = "ig/findOne/{id}",method = RequestMethod.GET)
-    public JsonModel copyLink(@PathVariable("id") Long id){
+    public JsonModel findOne(@PathVariable("id") Long id){
 
         try {
             FriendlyLink ret = friendlyLinkDao.findOne(id);
