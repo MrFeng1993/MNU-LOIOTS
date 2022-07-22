@@ -1,9 +1,11 @@
 .img-wrapper {
-  margin: 0 auto;
-  display: flex !important;
+  /* margin: 0 auto; */
+  /* display: flex !important;
   flex-direction: row;
   flex-wrap: nowrap;
   align-content: center;
-  justify-content: center;
-  height: 600px;
+  justify-content: center; */
+  /* height: 600px; */
+  width: 100vw;
+  height: 60vh;
 }

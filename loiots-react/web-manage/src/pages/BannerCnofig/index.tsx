@@ -20,7 +20,6 @@ export default () => {
     navigate(`/banner_config/create?type=edit&id=${id}`);
   }
 
-
   return (
     <ProTable
       actionRef={actionRef}

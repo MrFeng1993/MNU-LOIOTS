@@ -18,6 +18,7 @@ export default () => {
   const [fileList, setFileList] = useState([]);
   const [options, setOptions] = useState([]);
   const queryParams = useUrlState()[0];
+  const [content, setContent] = useState('');
   const { type, id } = queryParams;
 
 
@@ -33,6 +34,7 @@ export default () => {
 
   const getListData = async () => {
     const data = await getArticle(id)
+    setContent(data.content)
     setFileList([{
       uid: uuidv4(),
       name: data?.coverImgLink?.split('/').pop(),
@@ -142,8 +144,10 @@ export default () => {
           options={options}
           rules={[{ required: true, message: '请选择栏目' }]}
         />
-        <ProFormCkeditor width="md"
+        <ProFormCkeditor
+          width="md"
           rules={[{ required: true, message: '请填写内容' }]}
+          initialValue={content}
           name="content"
           label="内容" />
       </ProForm>

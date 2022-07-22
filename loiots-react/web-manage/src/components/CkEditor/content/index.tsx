@@ -13,11 +13,14 @@ function MyCustomUploadAdapterPlugin(editor) {
 let newEditor = null
 
 const Ckeditor = (props) => {
-  const { onChange, value } = props
+
+  const { onChange, value, initialValue } = props
+
+  console.log('initialValue', initialValue);
 
   useEffect(() => {
-    value && newEditor.setData(value.toString())
-  }, [value])
+    initialValue && newEditor.setData(initialValue.toString())
+  }, [initialValue])
 
   useEffect(() => {
     ClassicEditor
