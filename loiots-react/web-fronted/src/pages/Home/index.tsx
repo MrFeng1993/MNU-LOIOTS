@@ -56,7 +56,7 @@ export default () => {
 
 
   return (
-    <div>
+    <div key='home'>
       <Slider />
       <List
         style={{ padding: '40px' }}

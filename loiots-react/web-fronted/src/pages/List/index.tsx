@@ -64,6 +64,7 @@ export default () => {
 
   return (
     <div
+      key={code}
       style={{
         boxShadow: '0 0 8px rgba(0, 0, 0, 0.2)',
       }}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRoutes, } from 'react-router-dom';
-import { UserOutlined, VideoCameraOutlined, UploadOutlined, LinkOutlined, EditOutlined } from '@ant-design/icons';
+import { UserOutlined, VideoCameraOutlined, UploadOutlined, LinkOutlined, FundProjectionScreenOutlined } from '@ant-design/icons';
 import Home from '../pages/Home';
 import TeamManage from '../pages/TeamManage';
 import TeamManageCreate from '../pages/TeamManage/Create';
@@ -99,7 +99,7 @@ const menuItemsArr = [
         label: '轮播图管理',
         visible: true,
         element: <BannerCnofig />,
-        icon: <UserOutlined />
+        icon: <FundProjectionScreenOutlined />
     },
     {
         path: '/banner_config/create',

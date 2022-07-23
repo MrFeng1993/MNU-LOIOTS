@@ -4,12 +4,6 @@ import '@ckeditor/ckeditor5-build-classic/build/translations/zh-cn';
 import MyUploadAdapter from "../upload";
 
 
-function MyCustomUploadAdapterPlugin(editor) {
-  editor.plugins.get("FileRepository").createUploadAdapter = loader => {
-    return new MyUploadAdapter(loader);
-  };
-}
-
 const Ckeditor = (props) => {
   const { content } = props
   useEffect(() => {

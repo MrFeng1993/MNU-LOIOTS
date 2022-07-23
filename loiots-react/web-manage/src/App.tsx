@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, Image } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import type { MenuProps } from 'antd';
 import {
@@ -11,6 +11,8 @@ import {
 } from '@ant-design/icons';
 import { AppRoutes, menuItems } from './router/routes';
 import './App.css';
+// @ts-ignore
+import logo from './assets/logo.png';
 
 const { Header, Sider, Content } = Layout;
 
@@ -29,8 +31,9 @@ const App: React.FC = () => {
       height: '100vh',
       overflow: 'hidden',
     }}>
-      <Sider trigger={null} collapsible collapsed={collapsed}>
-        <div className="logo" />
+      <Sider style={{ textAlign: 'center' }} trigger={null} collapsible collapsed={collapsed}>
+        <img style={{ height: '50px', margin: '15px 0' }} src={logo} />
+        {/* <Image height={100} width={100} src={text} alt=""></Image> */}
         <Menu
           theme="dark"
           mode="inline"

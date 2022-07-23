@@ -24,7 +24,7 @@ const Content: React.FC = () => {
   }
 
   return (
-    <div style={{ margin: '2% 5%', minHeight: '60vh' }}>
+    <div key={id} style={{ margin: '2% 5%', minHeight: '60vh' }}>
       {
         data ?
           <WaterMark>

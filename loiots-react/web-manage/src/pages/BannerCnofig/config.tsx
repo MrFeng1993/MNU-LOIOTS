@@ -16,7 +16,7 @@ const getColumns = (goToEdit, delBanner, actionRef) => [
     dataIndex: 'imgLink',
     search: false,
     render: (text, record) => {
-      return <Image height={100} width={100} src={text} alt="" />;
+      return <Image height={100} width={100} src={text || 'error'} alt="" />;
     }
   },
   {

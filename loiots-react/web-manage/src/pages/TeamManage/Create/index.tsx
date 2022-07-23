@@ -116,11 +116,13 @@ export default () => {
           placeholder="请填写介绍"
           rules={[{ required: true, message: '请填写介绍' }]}
         />
-        <ProFormUploadButton max={1} fieldProps={{
-          ...getUploadProps(setFileList, formRef, 'profileImgLink'),
-          fileList: fileList,
-          onChange: handleChange
-        }} label="图片" name="profileImgLink"
+        <ProFormUploadButton max={1}
+          rules={[{ required: true, message: '请输入姓名' }]}
+          fieldProps={{
+            ...getUploadProps(setFileList, formRef, 'profileImgLink'),
+            fileList: fileList,
+            onChange: handleChange
+          }} label="图片" name="profileImgLink"
         />
         <ProFormCkeditor width="large"
           initialValue={content}
