@@ -14,10 +14,8 @@ import { getUploadProps } from '../../../utils';
 
 
 export default () => {
-
   const formRef = useRef<ProFormInstance>();
   const [fileList, setFileList] = useState([]);
-  const [content, setContent] = useState('')
   const queryParams = useUrlState()[0];
   const { type, id } = queryParams;
 
@@ -34,7 +32,6 @@ export default () => {
 
   const getListData = async () => {
     const data = await getResearcher(id)
-    setContent(data.detailInfo)
     setFileList([{
       uid: uuidv4(),
       name: data?.profileImgLink?.split('/').pop(),
@@ -122,9 +119,7 @@ export default () => {
           onChange: handleChange
         }} label="图片" name="profileImgLink"
         />
-        <ProFormCkeditor
-          initialValue={content}
-          width="large"
+        <ProFormCkeditor width="large"
           rules={[{ required: true, message: '请填写内容' }]}
           name="detailInfo"
           label="内容" />

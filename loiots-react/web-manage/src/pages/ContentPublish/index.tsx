@@ -63,7 +63,7 @@ export default () => {
         <Button key="primary" type="primary" onClick={() => {
           navigate('/content_publish/create');
         }}>
-          创建
+          创建内容
         </Button>,
       ]}
     />

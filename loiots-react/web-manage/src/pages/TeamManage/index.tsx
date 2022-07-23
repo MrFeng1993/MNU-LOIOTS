@@ -51,7 +51,7 @@ export default () => {
         <Button key="primary" type="primary" onClick={() => {
           navigate('/team_manage/create');
         }}>
-          创建
+          新增
         </Button>,
       ]}
     />
