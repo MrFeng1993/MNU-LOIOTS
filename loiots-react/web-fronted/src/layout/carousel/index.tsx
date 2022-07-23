@@ -18,7 +18,9 @@ const App = () => {
         <img src="c1.jpg" alt=""  style={{width: "100%",}}/>
       </div>
       <div className='img-wrapper'>
+
         <img src="c2.jpg" alt=""  style={{width: "100%",}}/>
+
       </div>
       <div className='img-wrapper'>
         <img src="c3.jpg" alt=""  style={{width: "100%",}}/>
