@@ -183,7 +183,7 @@ const MENU_LIST = [
             element: <RichText />,
             meta: {
               pageType: RICH_TEXT,
-              code: 'SYSAS'
+              code: 'SYSAQ'
             }
           },
         ],
