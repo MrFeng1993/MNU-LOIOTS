@@ -1,0 +1,30 @@
+.flex {
+  display: flex;
+}
+
+.flex-h {
+  display: flex;
+  flex-direction: column;
+}
+
+.center-w {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.center-h {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+* {
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+.hover {
+  cursor: pointer;
+}

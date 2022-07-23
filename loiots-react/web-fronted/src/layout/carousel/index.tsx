@@ -11,17 +11,24 @@ const App = () => {
 
   return (
     <Carousel
+      effect="fade"
       autoplay
       afterChange={onChange}>
       <div className='img-wrapper'>
-        <img src="http://www.mnu.cn/images/banner/tsg.jpg" alt="" />
+        <img src="c1.jpg" alt=""  style={{width: "100%",}}/>
       </div>
       <div className='img-wrapper'>
-        <img src="https://images.unsplash.com/photo-1597655601841-214a4cfe8b2c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1978&q=80" alt="" />
+
+        <img src="c2.jpg" alt=""  style={{width: "100%",}}/>
+
       </div>
       <div className='img-wrapper'>
-        <img src="http://www.mnu.cn/images/banner/tsg.jpg" alt="" />
+        <img src="c3.jpg" alt=""  style={{width: "100%",}}/>
       </div>
+      <div className='img-wrapper'>
+        <img src="c4.jpg" alt=""  style={{width: "100%",}}/>
+      </div>
+      
     </Carousel >
   );
 };
