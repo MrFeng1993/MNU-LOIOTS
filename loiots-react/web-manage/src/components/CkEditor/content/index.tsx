@@ -1,9 +1,7 @@
 import { useEffect } from 'react';
 import ClassicEditor from 'lee-editor'
 // 中文包
-// import 'lee-editor/translations/zh-cn.js';
-import '@ckeditor/ckeditor5-build-classic/build/translations/zh-cn';
-
+import 'lee-editor/build/translations/zh-cn';
 import MyUploadAdapter from "../upload";
 
 
