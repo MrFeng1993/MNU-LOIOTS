@@ -1,11 +1,13 @@
 .friendLink {
-  display: 'inline-block';
-  padding-right: '15px';
-  line-height: '15px';
-  margin-right: '20px';
-  font-size: '16px';
+  display: inline-block;
+  padding-right: 10px;
+  line-height: 15px;
+  margin-right: 10px;
+  font-size: 16px;
+  line-height: 15px;
+  border-right: 1px solid white;
 }
 
-.friendLink:first-child {
-  border-right: '1px solid white',
+.friendLink:last-child {
+  border-right: none
 }

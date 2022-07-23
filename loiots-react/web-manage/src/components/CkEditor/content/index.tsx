@@ -23,6 +23,13 @@ const Ckeditor = (props) => {
   useEffect(() => {
     ClassicEditor
       .create(document.querySelector('#editor'), {
+        mediaEmbed: {
+          previewsInData: true
+        },
+        language: {
+          ui: 'zh-cn',
+          content: 'zh-cn',
+        },
         extraPlugins: [MyCustomUploadAdapterPlugin],
       })
       .then(editor => {

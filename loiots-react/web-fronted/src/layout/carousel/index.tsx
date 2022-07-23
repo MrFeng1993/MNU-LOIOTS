@@ -15,20 +15,20 @@ const App = () => {
       autoplay
       afterChange={onChange}>
       <div className='img-wrapper'>
-        <img src="c1.jpg" alt=""  style={{width: "100%",}}/>
+        <img src="c1.jpg" alt="" style={{ width: "100%", }} />
       </div>
       <div className='img-wrapper'>
 
-        <img src="c2.jpg" alt=""  style={{width: "100%",}}/>
+        <img src="c2.jpg" alt="" style={{ width: "100%", }} />
 
       </div>
       <div className='img-wrapper'>
-        <img src="c3.jpg" alt=""  style={{width: "100%",}}/>
+        <img src="c3.jpg" alt="" style={{ width: "100%", }} />
       </div>
       <div className='img-wrapper'>
-        <img src="c4.jpg" alt=""  style={{width: "100%",}}/>
+        <img src="c4.jpg" alt="" style={{ width: "100%", }} />
       </div>
-      
+
     </Carousel >
   );
 };

@@ -11,7 +11,6 @@ export const getArticle = (path) => {
   return request.get(`article/ig/findOne/${path}`);
 };
 
-
 // 科研人员列表
 export const getResearcherList = (data) => {
   return request.post('researcher/ig/search', data);
