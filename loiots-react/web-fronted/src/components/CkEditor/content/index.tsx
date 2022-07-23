@@ -12,9 +12,13 @@ const Ckeditor = (props) => {
         toolbar: []
       })
       .then(editor => {
-        const loadingLock = Symbol();
+        // const loadingLock = Symbol();
         editor.setData(content);
-        (editor as any)['enableReadOnlyMode'](loadingLock);
+        editor.isReadOnly = true;
+        editor.setReadOnly(true)
+        // (editor as any)['enableReadOnlyMode'](loadingLock);
+        // editor.enableReadOnlyMode(editorId);
+        // editor.disableReadOnlyMode(editorId);
       })
       .catch(error => {
         console.log(error);
