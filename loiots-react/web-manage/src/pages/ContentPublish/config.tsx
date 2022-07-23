@@ -1,10 +1,9 @@
 import { Button, message, Popconfirm, Tag } from 'antd';
 const getColumns = (ListOnArticle, TakeDownArticle, DelArticle, actionRef, mapping, goToEdit) => [
   {
-    title: '序号',
-    width: 120,
-    dataIndex: 'id',
-    search: false,
+    dataIndex: 'index',
+    valueType: 'indexBorder',
+    width: 48,
   },
   {
     title: '栏目',

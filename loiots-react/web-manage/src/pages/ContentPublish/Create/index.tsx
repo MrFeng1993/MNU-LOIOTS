@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react';
 import { PageContainer } from '@ant-design/pro-components';
 import { ProForm, ProFormRadio, ProFormText, ProFormUploadButton, ProCard } from '@ant-design/pro-components';
 import type { ProFormInstance } from '@ant-design/pro-components';
-import { Col, message, Row, Space, Button } from 'antd';
+import { Col, message, Row, Divider, Button } from 'antd';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import useUrlState from '@ahooksjs/use-url-state';
@@ -19,11 +19,12 @@ export default () => {
   const [options, setOptions] = useState([]);
   const queryParams = useUrlState()[0];
   const { type, id } = queryParams;
+  const [content, setContent] = useState("")
 
 
   const formItemLayout = {
-    labelCol: { span: 4 },
-    wrapperCol: { span: 14 },
+    labelCol: { span: 1 },
+    wrapperCol: { span: 24 },
   }
 
   const handleChange = (file) => {
@@ -38,6 +39,7 @@ export default () => {
       name: data?.coverImgLink?.split('/').pop(),
       url: data?.coverImgLink
     }]);
+    setContent(data?.content)
     formRef.current?.setFieldsValue({ ...data })
   }
 
@@ -110,6 +112,8 @@ export default () => {
         }} key={uuidv4()}>重置</Button>,
       ]}
     >
+      <Divider />
+
       <ProForm
         formRef={formRef}
         {...formItemLayout}
@@ -127,8 +131,8 @@ export default () => {
           width="md"
           name="title"
           label="标题"
-          placeholder="请输入姓名"
-          rules={[{ required: true, message: '请输入姓名' }]}
+          placeholder="请输入标题"
+          rules={[{ required: true, message: '请输入标题' }]}
         />
         <ProFormUploadButton max={1} fieldProps={{
           ...getUploadProps(setFileList, formRef, 'coverImgLink'),
@@ -143,6 +147,7 @@ export default () => {
           rules={[{ required: true, message: '请选择栏目' }]}
         />
         <ProFormCkeditor width="md"
+          initialValue={content}
           rules={[{ required: true, message: '请填写内容' }]}
           name="content"
           label="内容" />

@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "uuid": "^8.3.2",
     "@ahooksjs/use-url-state": "^3.5.0",
     "@ant-design/icons": "^4.7.0",
     "@ant-design/pro-components": "^1.1.5",
@@ -31,6 +30,7 @@
     "axios": "^0.27.2",
     "eslint-config-airbnb": "^19.0.4",
     "husky": "^8.0.1",
+    "lee-editor": "^19.0.0",
     "markdown-it": "^13.0.1",
     "normalize.css": "^8.0.1",
     "prettier": "^2.7.1",
@@ -42,6 +42,7 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "typescript": "^4.7.2",
+    "uuid": "^8.3.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

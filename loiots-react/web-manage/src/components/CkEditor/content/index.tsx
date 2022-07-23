@@ -1,6 +1,9 @@
 import { useEffect } from 'react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import ClassicEditor from 'lee-editor'
+// 中文包
+// import 'lee-editor/translations/zh-cn.js';
 import '@ckeditor/ckeditor5-build-classic/build/translations/zh-cn';
+
 import MyUploadAdapter from "../upload";
 
 
@@ -13,24 +16,16 @@ function MyCustomUploadAdapterPlugin(editor) {
 let newEditor = null
 
 const Ckeditor = (props) => {
-  const { onChange, value } = props
+  const { onChange, initialValue } = props
 
   useEffect(() => {
-    value && newEditor.setData(value.toString())
-  }, [value])
+    initialValue && newEditor.setData(initialValue.toString())
+  }, [initialValue])
 
   useEffect(() => {
     ClassicEditor
       .create(document.querySelector('#editor'), {
         extraPlugins: [MyCustomUploadAdapterPlugin],
-        mediaEmbed: {
-          previewsInData: true
-        },
-        language: {
-          ui: 'zh-cn',
-          content: 'zh-cn',
-        },
-        data: '<p>请开始创作吧</p>'
       })
       .then(editor => {
         newEditor = editor

@@ -3,7 +3,7 @@ import { useRef, useEffect } from 'react';
 import { PageContainer } from '@ant-design/pro-components';
 import { ProForm, ProFormRadio, ProFormText, ProFormUploadButton } from '@ant-design/pro-components';
 import type { ProFormInstance } from '@ant-design/pro-components';
-import { Col, message, Row, Space, Button } from 'antd';
+import { Divider, message, Row, Space, Button } from 'antd';
 import { useState } from 'react';
 import useUrlState from '@ahooksjs/use-url-state';
 import { v4 as uuidv4 } from 'uuid';
@@ -17,11 +17,12 @@ export default () => {
   const formRef = useRef<ProFormInstance>();
   const [fileList, setFileList] = useState([]);
   const queryParams = useUrlState()[0];
+  const [content, setContent] = useState("")
   const { type, id } = queryParams;
 
   const formItemLayout = {
-    labelCol: { span: 4 },
-    wrapperCol: { span: 14 }
+    labelCol: { span: 1 },
+    wrapperCol: { span: 24 },
   }
 
   const handleChange = (file) => {
@@ -37,6 +38,7 @@ export default () => {
       name: data?.profileImgLink?.split('/').pop(),
       url: data?.profileImgLink
     }]);
+    setContent(data?.detailInfo)
     formRef.current?.setFieldsValue({ ...data })
   }
 
@@ -93,6 +95,7 @@ export default () => {
         }} key={uuidv4()}>重置</Button>,
       ]}
     >
+      <Divider />
       <ProForm
         {...formItemLayout}
         layout={'horizontal'}
@@ -120,6 +123,7 @@ export default () => {
         }} label="图片" name="profileImgLink"
         />
         <ProFormCkeditor width="large"
+          initialValue={content}
           rules={[{ required: true, message: '请填写内容' }]}
           name="detailInfo"
           label="内容" />

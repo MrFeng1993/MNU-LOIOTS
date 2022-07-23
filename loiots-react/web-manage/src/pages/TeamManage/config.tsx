@@ -2,10 +2,9 @@ import { message, Popconfirm } from 'antd';
 
 const getColumns = (moveUpResearcher, moveDownResearcher, delResearcher, actionRef, goToEdit) => [
   {
-    title: '序号',
-    width: 120,
-    dataIndex: 'id',
-    search: false,
+    dataIndex: 'index',
+    valueType: 'indexBorder',
+    width: 48,
   },
   {
     title: '姓名',
