@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import type { ActionType } from '@ant-design/pro-components';
 import { getColumns } from './config';
+import { getSpell } from 'jian-pinyin'
 import { getArticleList, getArticle, ListOnArticle, TakeDownArticle, DelArticle, getMenuDict } from '../../api/ContentPublish';
 
 
@@ -16,13 +17,32 @@ export default () => {
   const navigate = useNavigate();
   const [mapping, setMapping] = useState()
   const actionRef = useRef<ActionType>();
+  const [options, setOptions] = useState([]);
+
 
   useEffect(() => {
+    getOptions()
     getMenuMapping()
   }, [])
 
-  const goToEdit = (id) => {
-    navigate(`/content_publish/create?type=edit&id=${id}`);
+  const getOptions = async () => {
+    const arr = ['LXWM', 'SYSJJ', 'SYSAS', 'RCQK']
+    const data = await getMenuDict()
+    const options = Object.keys(data).map(key => {
+      return {
+        label: data[key],
+        value: key,
+        pinyin: getSpell(data[key])?.replaceAll(',', '').replaceAll('[', '').replaceAll(']', '')
+      }
+    }).filter(item => {
+      return !arr.includes(item.value)
+    })
+    setOptions(options);
+  }
+
+  const goToEdit = (record) => {
+    const { id, creator } = record
+    navigate(`/content_publish/create?type=edit&id=${id}&creator=${creator}`);
   }
 
   const getMenuMapping = async () => {
@@ -30,13 +50,12 @@ export default () => {
     data && setMapping(data as any)
   }
 
-
   return (
     <ProTable
       actionRef={actionRef}
       cardBordered
       // @ts-ignore ts-message: Property 'columns' is missing in type '{}' but required in type 'ProTableProps<TableListItem>'.
-      columns={getColumns(ListOnArticle, TakeDownArticle, DelArticle, actionRef, mapping, goToEdit)}
+      columns={getColumns(ListOnArticle, TakeDownArticle, DelArticle, actionRef, mapping, goToEdit, options)}
       request={async (params, sorter, filter) => {
         const { current, pageSize, part } = params;
         const data = await getArticleList({

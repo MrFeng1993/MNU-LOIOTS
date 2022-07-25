@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { useEffect, useRef } from 'react';
 import { PageContainer } from '@ant-design/pro-components';
-import { ProForm, ProFormRadio, ProFormText, ProFormUploadButton, ProCard } from '@ant-design/pro-components';
+import { ProForm, ProFormRadio, ProFormText, ProFormUploadButton, ProFormSelect } from '@ant-design/pro-components';
 import type { ProFormInstance } from '@ant-design/pro-components';
 import { Col, message, Row, Divider, Button } from 'antd';
 import { useState } from 'react';
@@ -11,6 +11,7 @@ import { v4 as uuidv4 } from 'uuid';
 import ProFormCkeditor from '../../../components/CkEditor';
 import { AddArticle, getMenuDict, getArticle } from '../../../api/ContentPublish';
 import { getUploadProps } from '../../../utils';
+import { getSpell } from 'jian-pinyin'
 
 export default () => {
 
@@ -18,7 +19,7 @@ export default () => {
   const [fileList, setFileList] = useState([]);
   const [options, setOptions] = useState([]);
   const queryParams = useUrlState()[0];
-  const { type, id } = queryParams;
+  const { type, id, creator } = queryParams;
   const [content, setContent] = useState("")
 
 
@@ -55,7 +56,8 @@ export default () => {
     const options = Object.keys(data).map(key => {
       return {
         label: data[key],
-        value: key
+        value: key,
+        pinyin: getSpell(data[key])?.replaceAll(',', '').replaceAll('[', '').replaceAll(']', '')
       }
     }).filter(item => {
       return !arr.includes(item.value)
@@ -64,6 +66,8 @@ export default () => {
   }
 
   useEffect(() => { getOptions() }, [])
+
+  console.log(options);
 
 
   return (
@@ -134,17 +138,28 @@ export default () => {
           placeholder="请输入标题"
           rules={[{ required: true, message: '请输入标题' }]}
         />
-        <ProFormUploadButton max={1} fieldProps={{
-          ...getUploadProps(setFileList, formRef, 'coverImgLink'),
-          fileList: fileList,
-          onChange: handleChange
-        }} label="图片" name="coverImgLink"
-        />
-        <ProFormRadio.Group
+        <ProFormSelect
+          width="md"
           name="part"
           label="栏目"
           options={options}
+          fieldProps={{
+            disabled: creator === 'system',
+            showSearch: true,
+            filterOption: (input, option) => {
+              return option?.pinyin.includes(input.toLowerCase())
+            }
+          }}
           rules={[{ required: true, message: '请选择栏目' }]}
+        />
+        <ProFormUploadButton
+          width="md"
+          max={1}
+          fieldProps={{
+            ...getUploadProps(setFileList, formRef, 'coverImgLink'),
+            fileList: fileList,
+            onChange: handleChange
+          }} label="图片" name="coverImgLink"
         />
         <ProFormCkeditor width="md"
           initialValue={content}

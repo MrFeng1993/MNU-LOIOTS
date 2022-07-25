@@ -1,6 +1,6 @@
 @import '~antd/dist/antd.css';
 @import '~@ant-design/pro-components/dist/components.css';
-@import '../node_modules/normalize.css/normalize.css'
+@import '../node_modules/normalize.css/normalize.css';
 
 * {
   margin: 0;

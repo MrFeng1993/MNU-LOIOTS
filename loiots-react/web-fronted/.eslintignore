@@ -8,6 +8,7 @@ coverage
 
 .gitignore
 .prettierignore
+.eslintrc.js
 reportWebVitals.ts
 tsconfig.json
 src

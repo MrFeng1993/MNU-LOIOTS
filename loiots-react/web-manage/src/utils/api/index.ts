@@ -7,7 +7,7 @@ export const createAxiosByinterceptors = (
   config?: AxiosRequestConfig
 ): AxiosInstance => {
   const instance = axios.create({
-    timeout: 10000,
+    timeout: 1000000,
     withCredentials: true,
     ...config,
   });

@@ -2,6 +2,7 @@ import { uploadImg } from '../api/Common';
 
 export const getUploadProps = (setter, formRef, key) => {
   return {
+    maxCount: 1,
     listType: "picture",
     action: () => false,
     beforeUpload(file) {

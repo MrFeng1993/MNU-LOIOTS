@@ -1,9 +1,7 @@
-// @ts-nocheck
 import React, { useEffect, useState } from 'react';
 import { getArticle, getResearcher } from '../../api/Content'
 import useUrlState from '@ahooksjs/use-url-state';
 import { Empty } from 'antd';
-
 
 const Content: React.FC = () => {
 

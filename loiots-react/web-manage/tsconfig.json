@@ -27,6 +27,7 @@
     "src",
   ],
   "exclude": [
+    ".eslintrc.js"
     "src/modules/test",
     "src/react-app-env.d.ts"
   ]
