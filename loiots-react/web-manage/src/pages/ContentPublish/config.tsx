@@ -10,7 +10,8 @@ const getColumns = (ListOnArticle, TakeDownArticle, DelArticle, actionRef, mappi
     title: '栏目',
     width: 120,
     dataIndex: 'part',
-    hiddenInTable: true,
+    search: true,
+    hideInTable: true,
     renderFormItem: ({ value, onChange }) => {
       return (
         <Select showSearch={true}
