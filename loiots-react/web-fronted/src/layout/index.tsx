@@ -62,7 +62,7 @@ const App: React.FC = () => {
           onClick={handleMenuClick}
           style={{
             fontSize: "16px",
-            paddingLeft: "88px",
+            paddingLeft: '2%',
             lineHeight: "70px",
             position: 'sticky',
             zIndex: '99999999',
