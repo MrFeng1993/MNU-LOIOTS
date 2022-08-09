@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { useRoutes, } from 'react-router-dom';
 import { UserOutlined, VideoCameraOutlined, UploadOutlined, LinkOutlined, FundProjectionScreenOutlined } from '@ant-design/icons';
 import Home from '../pages/Home';
 import TeamManage from '../pages/TeamManage';
 import TeamManageCreate from '../pages/TeamManage/Create';
-import BannerCnofig from '../pages/BannerCnofig';
-import BannerCnofigCreate from '../pages/BannerCnofig/Create';
+// import BannerCnofig from '../pages/BannerCnofig';
+// import BannerCnofigCreate from '../pages/BannerCnofig/Create';
+const BannerCnofigCreate = lazy(() => import('../pages/BannerCnofig/Create'));
+const BannerCnofig = lazy(() => import('../pages/BannerCnofig'));
 import ContentPublish from '../pages/ContentPublish';
 import ContentPublishCreate from '../pages/ContentPublish/Create';
 import FriendLink from '../pages/FriendLink';
@@ -98,7 +100,9 @@ const menuItemsArr = [
         key: '/banner_config',
         label: '轮播图管理',
         visible: true,
-        element: <BannerCnofig />,
+        element: (<Suspense>
+            <BannerCnofig />
+        </Suspense>),
         icon: <FundProjectionScreenOutlined />
     },
     {

@@ -12,9 +12,13 @@ const getColumns = (ListOnArticle, TakeDownArticle, DelArticle, actionRef, mappi
     dataIndex: 'part',
     search: true,
     hideInTable: true,
-    renderFormItem: ({ value, onChange }) => {
+    renderFormItem: ({ onChange }) => {
       return (
         <Select showSearch={true}
+          onChange={(value) => {
+            onChange(value)
+            console.log(value)
+          }}
           filterOption={(input, option) => {
             const targetItem = options.find(item => item.value === option.value);
             return targetItem?.pinyin.includes(input.toLowerCase())
