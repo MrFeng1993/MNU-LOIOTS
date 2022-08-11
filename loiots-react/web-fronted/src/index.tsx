@@ -10,9 +10,6 @@ import App from './layout';
 import { store } from './store';
 import reportWebVitals from './reportWebVitals';
 
-// const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement,
-// );
 
 ReactDOM.render(
   // <React>
