@@ -17,6 +17,7 @@ const App: React.FC = () => {
   const navigate = useNavigate();
 
   const handleMenuClick: MenuProps['onClick'] = (e) => {
+    debugger
     const targetMenuItem = ROUTERS.find(item => item.key === e.key);
     navigate(`${e.key}?code=${targetMenuItem?.meta?.code || 'home'}`);
   };
