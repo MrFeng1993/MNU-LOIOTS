@@ -55,7 +55,7 @@ export const createAxiosByinterceptors = (
 
 
 const request = createAxiosByinterceptors({
-  baseURL: 'http://82.156.213.198/apis'
+  baseURL: 'http://aqsys.mtc.edu.cn/apis'
   // baseURL: 'http://localhost/apis',
 });
 

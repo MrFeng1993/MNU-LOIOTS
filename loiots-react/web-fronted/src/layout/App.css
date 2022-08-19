@@ -42,6 +42,21 @@
   .logo-banner {
     display: none;
   }
+
+  .ant-pro-list .ant-list-vertical .ant-pro-list-row {
+    padding: 0 !important;
+  }
+  
+  .ant-pro-list-row-description{
+    display: none !important;
+  }
+
+  .ant-pagination-total-text{
+    display: none !important;
+  }
+  .ant-card-body {
+    padding: 10px !important;
+  }
 }
 
 @media screen and (min-width: 900px) {

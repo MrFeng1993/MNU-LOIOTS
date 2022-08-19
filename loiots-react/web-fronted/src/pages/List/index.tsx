@@ -114,7 +114,7 @@ export default () => {
                   render: (item, record) => {
                     return <img
                       width={200}
-                      height={200}
+                      // height={200}
                       alt="logo"
                       src={record?.coverImgLink || record?.profileImgLink || "http://82.156.213.198/medias/52542da4.png"
                       }

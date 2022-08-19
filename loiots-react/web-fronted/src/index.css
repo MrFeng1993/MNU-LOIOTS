@@ -42,3 +42,7 @@ code {
 .anticon-ellipsis>svg {
   display: none !important;
 }
+
+.ant-pro-page-container-children-content {
+  margin: 0 !important;
+}
